@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 2 — Teacher Guide — Spanish I bridge: personal information</title>
+  <style>
+/* ============================================================================
+   print.css — shared print stylesheet for Teacher Guides + Lessons
+   ----------------------------------------------------------------------------
+   Derived from the TBLT template design system (sources/9_1..9_3) so Practice
+   Engine output and imported TBLT worksheets read as one visual language
+   (ADR 0010 — design borrowed, no runtime coupling).
+
+   GUIDELINES ENCODED HERE (do not weaken):
+   - Paper: A4 portrait, 2cm margins. (To switch to US Letter, edit the @page rule
+     below — size: letter — reversing ADR 0001.)
+   - No tinted fills: sections are demarcated by borders + font weight only.
+   - Monochrome: #111 text, grays for secondary text and borders. No accent color.
+   - orphans:3 / widows:3 — no stranded lines across page breaks.
+   - break-inside: avoid on every container; break-after: avoid on headers.
+   - Font sizes in pt; write-in heights in cm. Never rem/px for print.
+   Default font is sans (Variant B). For the serif "academic" look, set
+   --font-family to the Times stack.
+   ========================================================================== */
+
+:root {
+  --page-width: 21cm;              /* on-screen page width (A4=21cm, Letter=21.6cm) */
+  --page-margin: 2cm;              /* on-screen page margin (body padding). Print margin is the literal in @page below — Firefox ignores var() there. */
+  --font-family: 'Helvetica', 'Arial', sans-serif;
+  /* serif alt: 'Times New Roman', Times, serif; */
+  --fs-base: 11pt;
+  --fs-h1: 16pt;
+  --fs-h2: 13pt;
+  --fs-h3: 11pt;
+  --fs-small: 10pt;
+  --ink: #111;
+  --ink-2: #333;
+  --ink-3: #555;
+  --ink-mute: #777;
+  --rule: #bbb;
+  --rule-soft: #ccc;
+  --write: #888;
+}
+
+/* Literal values, NOT the :root vars above: Firefox does not resolve var()
+   inside @page, so a variable here drops the margin and content runs to the
+   paper edge. Keep in sync with --page-margin. To reverse ADR 0001: size letter. */
+@page { size: A4 portrait; margin: 2cm; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Screen: render a centered "page" so left/right margins are visible in the
+   browser too (@page margins apply to print only). Print resets this below. */
+html { background: #e9e9e9; }
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--ink);
+  orphans: 3;
+  widows: 3;
+  background: #fff;
+  width: var(--page-width);
+  max-width: 100%;
+  margin: 1cm auto;
+  padding: var(--page-margin);
+  box-shadow: 0 0 0.2cm rgba(0, 0, 0, 0.25);
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
+h1 { font-size: var(--fs-h1); font-weight: bold; }
+h2 { font-size: var(--fs-h2); font-weight: bold; }
+h3 { font-size: var(--fs-h3); font-weight: bold; }
+p, li, td, th { font-size: var(--fs-base); }
+small { font-size: var(--fs-small); color: var(--ink-3); }
+
+/* ── DOCUMENT HEADER (week / block) ─────────────────────────────────────── */
+.activity-header { border-bottom: 2pt solid var(--ink); padding-bottom: 0.4cm; margin-bottom: 0.6cm; }
+.activity-header h1 { margin-bottom: 0.15cm; }
+.meta-row { display: flex; gap: 1.5cm; font-size: var(--fs-small); color: var(--ink-2); margin-top: 0.2cm; }
+.meta-row span { white-space: nowrap; }
+
+.student-info { display: flex; gap: 1.5cm; margin-top: 0.5cm; margin-bottom: 0.8cm; }
+.student-info-field { flex: 1; }
+.student-info-field label { font-size: var(--fs-small); display: block; margin-bottom: 0.1cm; }
+.student-info-field .write-line { border-bottom: 1pt solid var(--ink-3); height: 0.7cm; display: block; }
+
+/* ── BLOCK + ARC-SLOT CONTAINERS (Practice Engine) ──────────────────────── */
+/* A block may flow across pages (only its START is forced to a new page, in the
+   @media print rule below). Do NOT keep the whole block on one page — that fights
+   long deep-arc blocks. Internal slots (.step-container) stay intact; widows/
+   orphans are governed on body. */
+.block { margin-bottom: 1cm; }
+.block-header {
+  color: var(--ink);
+  border-bottom: 2pt solid var(--ink);
+  padding: 0.2cm 0;
+  font-size: var(--fs-h2);
+  font-weight: bold;
+  margin-bottom: 0.4cm;
+  break-after: avoid; page-break-after: avoid;
+}
+.objective { font-weight: bold; margin-bottom: 0.4cm; }
+
+/* arc slot = one step of Do-Now → input → practice → output → exit ticket */
+.step-container { margin-bottom: 0.9cm; break-inside: avoid; page-break-inside: avoid; }
+.step-header {
+  color: var(--ink);
+  border-bottom: 1.5pt solid var(--ink);
+  padding: 0.2cm 0;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 0.35cm;
+  break-after: avoid; page-break-after: avoid;
+}
+.step-instruction {
+  font-size: 10.5pt; font-style: italic; color: var(--ink-2);
+  margin-bottom: 0.35cm; break-after: avoid; page-break-after: avoid;
+}
+
+/* ── WRITE-IN ELEMENTS ──────────────────────────────────────────────────── */
+.write-line { border-bottom: 1pt solid var(--write); height: 0.75cm; display: block; width: 100%; margin-bottom: 0.4cm; }
+.write-box { border: 1pt solid var(--write); min-height: 2cm; width: 100%; margin-bottom: 0.5cm; display: block; }
+
+/* ── WORD BANK ──────────────────────────────────────────────────────────── */
+.word-bank { border: 1pt solid var(--rule); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.word-bank-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); margin-bottom: 0.15cm; }
+.word-bank-items { display: flex; flex-wrap: wrap; gap: 0.2cm 0.6cm; font-size: var(--fs-base); }
+.word-bank-items span { white-space: nowrap; }
+
+/* ── TABLES ─────────────────────────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; font-size: var(--fs-base); break-inside: avoid; page-break-inside: avoid; }
+thead { display: table-header-group; }
+th { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; text-align: center; font-weight: bold; font-size: 10.5pt; }
+td { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; vertical-align: top; }
+.check-cell { width: 1.8cm; text-align: center; }
+.num-cell { width: 0.7cm; text-align: center; color: var(--ink-3); }
+
+/* ── TWO-COLUMN LAYOUTS (match, sort) ───────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
+.col-box { border: 1pt solid var(--rule); padding: 0.3cm; break-inside: avoid; page-break-inside: avoid; }
+.col-header { font-weight: bold; font-size: 10.5pt; text-align: center; border-bottom: 1pt solid var(--rule); padding: 0.1cm 0.2cm; margin-bottom: 0.2cm; break-after: avoid; page-break-after: avoid; }
+
+/* ── LIST ITEMS (numbered/lettered exercises) ───────────────────────────── */
+.list-item { display: flex; align-items: flex-start; gap: 0.3cm; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
+.list-item .num { min-width: 0.6cm; font-weight: bold; color: var(--ink-3); padding-top: 0.02cm; }
+.list-item .content { flex: 1; }
+
+/* ── SENTENCE FRAMES ────────────────────────────────────────────────────── */
+.frame-section { margin-bottom: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
+.frame-model { border-left: 3pt solid var(--ink-3); padding: 0.2cm 0.4cm; font-style: italic; font-size: 10.5pt; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
+.frame-model-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; color: #666; display: block; margin-bottom: 0.05cm; font-style: normal; }
+
+/* ── RATING SCALE (self-assessment / exit ticket, from TBLT activity) ────── */
+.rating-scale { margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.scale-title { font-weight: bold; font-size: 10.5pt; margin-bottom: 0.1cm; }
+.scale-labels { display: flex; justify-content: space-between; font-size: var(--fs-small); color: var(--ink-3); }
+.scale-numbers { display: flex; gap: 0.4cm; }
+.scale-item { display: inline-flex; align-items: center; gap: 0.1cm; }
+.scale-radio { width: 0.4cm; height: 0.4cm; border: 1pt solid var(--write); border-radius: 50%; display: inline-block; }
+
+/* ── PRACTICE-ENGINE CALLOUTS ───────────────────────────────────────────── */
+/* Extension ("Reto extra") — bordered box, no fill */
+.extension { border: 1pt solid var(--rule); border-left: 3pt solid var(--ink); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.extension-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); margin-bottom: 0.1cm; }
+/* Primary source per week — QR/link line */
+.primary-source { font-size: var(--fs-small); color: var(--ink-2); border: 1pt dashed var(--rule); padding: 0.2cm 0.35cm; margin-bottom: 0.4cm; }
+/* Family take-home + "ask your teacher" (Lesson only) */
+.take-home { font-size: var(--fs-small); color: var(--ink-2); margin-top: 0.3cm; }
+.ask-teacher { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); margin-top: 0.3cm; }
+
+/* ── TBLT IMPORTED-TASK COMPONENTS (reskinned from tblt-imports output) ──── */
+/* Generic bordered callout — survival-phrase reminders, time/negotiation
+   prompts, bridge notes. Same monochrome-box language as .extension/.word-bank. */
+.callout { border: 1pt solid var(--ink-2); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.callout-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-2); margin-bottom: 0.15cm; }
+/* Example/model row inside an imported table (interview grid, sort grid) */
+.example-row td { font-style: italic; color: var(--ink-3); }
+/* Self-correction checklist (Post-Task) — distinct from .list-item (num+content) */
+.checklist-item { display: flex; align-items: flex-start; gap: 0.3cm; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
+.checklist-box { width: 0.35cm; height: 0.35cm; border: 1pt solid var(--ink-2); flex-shrink: 0; margin-top: 0.05cm; }
+
+/* ── TBLT EMBED (imported task nested into the task block, ADR 0011) ─────── */
+/* Heavier border signals an external artifact reskinned into the shared system.
+   The Practice Engine marks this slot; it never generates the task inside. */
+.tblt-embed { border: 1.5pt solid var(--ink); padding: 0.3cm 0.4cm; margin-bottom: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
+.tblt-embed-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); border-bottom: 1pt solid var(--rule); padding-bottom: 0.1cm; margin-bottom: 0.25cm; }
+.tblt-part { margin: 0.2cm 0; }
+.tblt-part-label { font-weight: bold; }
+.tblt-placeholder { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); }
+
+/* ── FOOTER ─────────────────────────────────────────────────────────────── */
+.activity-footer { margin-top: 1cm; border-top: 1pt solid var(--rule-soft); padding-top: 0.3cm; font-size: var(--fs-small); color: var(--ink-mute); text-align: center; break-inside: avoid; page-break-inside: avoid; }
+
+/* ── TEACHER GUIDE ELEMENTS (Guide file only — never in the Lesson) ──────── */
+/* ADR 0009: the Guide is a SEPARATE FILE, not a teacher-page appended to the
+   student file. These classes style the Guide; the Lesson never includes them. */
+.teacher-section { margin-bottom: 0.8rem; break-inside: avoid; page-break-inside: avoid; }
+.teacher-section-title { font-size: 11pt; font-weight: bold; border-bottom: 1pt solid var(--rule); padding-bottom: 0.2rem; margin-bottom: 0.3rem; }
+.teacher-note { font-size: var(--fs-small); line-height: 1.6; }
+.teacher-answer-key { font-size: var(--fs-small); line-height: 1.7; }
+.teacher-answer-key .ak-paso { font-weight: bold; margin-top: 0.4rem; }
+/* "hard on purpose" note (ADR 0012) — Guide only */
+.hard-note { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); border-left: 2pt solid var(--ink-3); padding-left: 0.3cm; margin: 0.2cm 0; }
+.why-note { font-size: var(--fs-small); color: var(--ink-2); }
+.timing { font-size: var(--fs-small); color: var(--ink-3); font-weight: normal; }
+
+@media print {
+  html { background: #fff; }
+  /* @page owns the print margins — clear the on-screen page simulation. */
+  body { width: auto; max-width: none; margin: 0; padding: 0; box-shadow: none; background: #fff; }
+
+  /* Each block starts on a fresh page so the teacher never cuts one block off
+     another at the copier. The FIRST block stays with the week header — it
+     directly follows .activity-header (Guide) or .student-info (Lesson), so
+     those two adjacencies opt back out of the page break. */
+  .block { break-before: page; page-break-before: always; }
+  .activity-header + .block,
+  .student-info + .block { break-before: auto; page-break-before: auto; }
+}
+
+/* Screen-only: mirror the print pagination during an HTML review, since the
+   @media print page breaks above are invisible on screen. A divider marks where
+   each block will begin a new printed page; the first block (right after the
+   week header) shows none. Never rendered in print. */
+@media screen {
+  .block::before {
+    content: "▲ nueva página / new page ▲";
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    border-top: 2px dashed var(--rule);
+    padding-top: 0.35cm;
+    margin: 1cm 0 0.6cm;
+  }
+  .activity-header + .block::before,
+  .student-info + .block::before { content: none; border-top: 0; padding-top: 0; margin: 0; }
+}
+
+</style>
+</head>
+<body>
+
+  <div class="activity-header">
+    <h1>Teacher Guide — Semana 2: Spanish I bridge — personal information</h1>
+    <div class="meta-row">
+      <span>Aug. 17–21</span>
+      <span>Spanish II · Miramar HS · Sr. Azuaje</span>
+      <span>Modes: Interpersonal + Presentational (writing)</span>
+      <span>3 blocks (~90 min)</span>
+    </div>
+    <p class="why-note" style="margin-top:0.3cm;">
+      <strong>Week goal:</strong> Exchange personal details, likes, interests; write a
+      <em>Todo sobre mí</em> profile. <strong>Spiral targets:</strong> Week 1 classroom
+      language + question words. <strong>Interleaving status:</strong> <em>ser</em>,
+      <em>tener</em> (Block 1) and <em>gustar</em>, <em>estar</em> (Block 2) are
+      <strong>introduced blocked</strong> this week — the <em>ser/estar</em> contrast is
+      Week 3, so do <em>not</em> juxtapose them yet. <strong>Reflection in:</strong> the
+      Week 1 TBLT's reflection is imported into Block 1, replacing its exit ticket (a
+      short formal-email reflection on the Week 1 survey). <strong>Assessment:</strong>
+      profile + mingle pattern (Block 3). One task (ADR 0019).
+    </p>
+  </div>
+
+  <!-- ══════════════════ BLOCK 1 (deep arc) ══════════════════ -->
+  <div class="block">
+    <div class="block-header">Bloque 1 — <em>Soy</em> y <em>tengo</em> (who I am)</div>
+    <p class="objective">Objective: I can say who I am and what I have.</p>
+    <p><strong>Mode:</strong> Presentational + Interpersonal</p>
+
+    <div class="step-container">
+      <div class="step-header">Sequence + timing + volume <span class="timing">(deep arc — 88 min)</span></div>
+      <div class="list-item"><span class="num">1.</span><span class="content"><strong>Do-Now — spiral (Wk 1)</strong> <span class="timing">(8)</span> — <strong>4 items</strong>: answer four question-word questions about yourself.</span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content"><strong>Input + CFU</strong> <span class="timing">(15)</span> — <em>ser</em> (soy/eres/es) + <em>tener</em> (tengo/tienes/tiene), blocked; <strong>≥3 modeled each + 2 CFUs</strong>.</span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content"><strong>Guided pass 1 — conjuga</strong> <span class="timing">(15)</span> — <strong>6-item set</strong>: choose <em>soy/eres/es</em> or <em>tengo/tienes/tiene</em>.</span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content"><strong>Communicative core — <em>Encuentra a alguien que…</em></strong> <span class="timing">(18)</span> — <strong>≥6 exchanges</strong>: find classmates matching 6 ser/tener facts; frames provided.</span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content"><strong>Brain break</strong> <span class="timing">(3)</span></span></div>
+      <div class="list-item"><span class="num">6.</span><span class="content"><strong>Guided pass 2 — interleave</strong> <span class="timing">(12)</span> — <strong>6-item</strong> contextual fill mixing <em>ser/tener</em> + a spiraled question word; harder than pass 1.</span></div>
+      <div class="list-item"><span class="num">7.</span><span class="content"><strong>Extended output — ¿Quién soy?</strong> <span class="timing">(12)</span> — <strong>4–5 sentences</strong>: who you are (<em>soy</em>) + what you have (<em>tengo</em>).</span></div>
+      <div class="list-item"><span class="num">8.</span><span class="content"><strong>Reflection (post-task, replaces exit ticket)</strong> <span class="timing">(~12)</span> — <em>from the Semana 1 TBLT:</em> short formal-email reflection on last week's class survey. Register shift <em>hola → buenos días</em> / formal close + signature; reflection sentences in English by design (Novice-Mid fence).</span></div>
+    </div>
+
+    <p><strong>Extension (Reto extra):</strong> Add a sentence with <em>tengo que</em> (I have to…).</p>
+    <p class="why-note"><strong>Why:</strong> <em>ser</em> and <em>tener</em> are anchored first, alone, so they encode before any mixing (ADR 0014). <em>Lens (ADR 0017):</em> the spiral Do-Now <strong>hooks</strong> with Week 1; <em>Encuentra a alguien que…</em> is the mid-block <strong>spike</strong> (movement + real info-gap); <strong>challenge varies</strong> conjugate → mingle → interleave → write; the ¿Quién soy? paragraph is the <strong>payoff</strong>.</p>
+    <p><strong>Materials:</strong> Lesson §Bloque 1; “Encuentra a alguien que…” grid; primary-source QR (short authentic self-intro clip — attach your own).</p>
+
+    <div class="teacher-section">
+      <div class="teacher-section-title">Key — Bloque 1</div>
+      <div class="teacher-answer-key">
+        <span class="ak-paso">Do-Now (spiral, sample):</span> <em>Me llamo… · Soy de… · Tengo … años · Me gusta…</em><br>
+        <span class="ak-paso">CFUs:</span> (1) “<em>ser</em> or <em>tener</em> for age?” → <em>tener</em> (Tengo 14 años). · (2) “Which for origin?” → <em>ser</em> (Soy de…).<br>
+        <span class="ak-paso">Guided pass 1 (conjuga):</span> 1. Yo <em>soy</em> estudiante. · 2. Yo <em>tengo</em> catorce años. · 3. ¿Tú <em>eres</em> de Florida? · 4. Mi amiga <em>tiene</em> el pelo largo. · 5. Él <em>es</em> simpático. · 6. Yo <em>tengo</em> una hermana.<br>
+        <span class="ak-paso">Guided pass 2 (interleave):</span> 1. ¿<em>Cuántos</em> años tienes? · 2. Yo <em>soy</em> de Miami y <em>tengo</em> dos hermanos. · 3. ¿De dónde <em>eres</em> tú? · 4. Mi profesor <em>es</em> paciente. · 5. Ella <em>tiene</em> el pelo corto y <em>es</em> simpática. · 6. ¿<em>Cómo</em> te llamas?<br>
+        <span class="ak-paso">Output (sample):</span> <em>Soy Ana. Soy de Miami. Tengo catorce años. Tengo dos hermanos. Soy estudiante de español.</em><br>
+        <span class="ak-paso">Reflection (post-task — replaces exit ticket):</span> reflection lines (2, 4, 5) are open — accept any honest, on-topic English answer. Sample email: <em>Buenos días,</em> 1. <em>Me llamo</em> Ana. · 2. "…keep walking to many different classmates instead of getting everything from one person." · 3. Name: Diego · <em>de</em> Miami · 14 <em>años</em>. · 4. "Most classmates are from Florida." · 5. "…survey a new class to learn their names and where they are from." Close: <em>Adiós. Me llamo</em> Ana. Spanish stays in-fence (<em>hola, buenos días, adiós, me llamo, de, años</em>); no <em>gustar</em>/"likes".
+      </div>
+    </div>
+
+    <div class="teacher-section">
+      <div class="teacher-section-title">Reflection — facilitation &amp; fence note</div>
+      <div class="teacher-note">
+        <strong>Genre:</strong> formal_email · <strong>register shift:</strong> informal_to_formal_verb_phrase (frozen at the Semana 1 Gate A). Realized in-fence at the open (<em>hola → buenos días</em>) and close (walk-away <em>adiós</em> → <em>adiós</em> + <em>me llamo</em> signature). <strong>Honest-constraint note:</strong> a true verb-level formal shift (<em>tú → usted</em>) is out-of-fence for this Week-1 16-item PVS, so the shift is kept minimal by design, not breached. <strong>Run it (~12 min):</strong> ~2 min frame the register table · ~8–10 min write the email frame · ~2–3 min two or three volunteers read their opening line + one class pattern aloud.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ BLOCK 2 (deep arc) ══════════════════ -->
+  <div class="block">
+    <div class="block-header">Bloque 2 — <em>Me gusta</em> y <em>estoy</em> (likes &amp; feelings)</div>
+    <p class="objective">Objective: I can say what I like and how I feel.</p>
+    <p><strong>Mode:</strong> Interpersonal</p>
+
+    <div class="step-container">
+      <div class="step-header">Sequence + timing + volume <span class="timing">(deep arc — 88 min)</span></div>
+      <div class="list-item"><span class="num">1.</span><span class="content"><strong>Do-Now — spiral (Bloque 1)</strong> <span class="timing">(8)</span> — <strong>4 items</strong>: a <em>soy</em> sentence, a <em>tengo</em> sentence, answer ¿De dónde eres?, one trait.</span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content"><strong>Input + CFU</strong> <span class="timing">(15)</span> — <em>me gusta / me gustan</em> + <em>estar</em> for feelings (estoy/estás/está), blocked; <strong>≥3 modeled each + 2 CFUs</strong>.</span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content"><strong>Guided pass 1 — escoge</strong> <span class="timing">(15)</span> — <strong>6-item set</strong>: <em>me gusta</em> vs <em>me gustan</em>, plus an <em>estar</em> feeling.</span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content"><strong>Communicative core — entrevista</strong> <span class="timing">(18)</span> — <strong>≥6 exchanges</strong>: 2 likes, 1 dislike, how they feel in 3 classes; frames provided.</span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content"><strong>Brain break</strong> <span class="timing">(3)</span></span></div>
+      <div class="list-item"><span class="num">6.</span><span class="content"><strong>Guided pass 2 — interleave</strong> <span class="timing">(12)</span> — <strong>6-item</strong> fill mixing <em>gustar</em> + <em>estar</em> + <em>tener</em> (Bloque 1); harder.</span></div>
+      <div class="list-item"><span class="num">7.</span><span class="content"><strong>Extended output — gustos y sentimientos</strong> <span class="timing">(12)</span> — <strong>4–5 sentences</strong>: 2 likes/dislikes + how you feel in 2 classes.</span></div>
+      <div class="list-item"><span class="num">8.</span><span class="content"><strong>Exit ticket</strong> <span class="timing">(5)</span> — <strong>3 items</strong>: one <em>me gusta</em>, one <em>me gustan</em>, one <em>estoy</em> sentence.</span></div>
+    </div>
+
+    <p><strong>Extension (Reto extra):</strong> Say something you like and something you don't (<em>no me gusta</em>).</p>
+    <p class="why-note"><strong>Why:</strong> <em>estar</em> is introduced for feelings only — its contrast with <em>ser</em> is deliberately held for Week 3, so keep them in separate blocks today. <em>Lens (ADR 0017):</em> the spiral Do-Now <strong>hooks</strong>; the interview is the <strong>spike</strong>; <strong>challenge varies</strong> choose → speak → interleave → write; the gustos paragraph is the <strong>payoff</strong> and feeds Block 3's profile.</p>
+    <p class="hard-note">Past (recognition only): if it comes up, gloss <em>me gustó</em> = “I liked it” in a model line — do not ask students to produce past tense (calendar: past = recognition in model only).</p>
+    <p><strong>Materials:</strong> Lesson §Bloque 2; interview partners.</p>
+
+    <div class="teacher-section">
+      <div class="teacher-section-title">Key — Bloque 2</div>
+      <div class="teacher-answer-key">
+        <span class="ak-paso">Do-Now (spiral, sample):</span> <em>Soy simpático/a. · Tengo dos hermanos. · Soy de Miami. · Soy trabajador/a.</em><br>
+        <span class="ak-paso">CFUs:</span> (1) “one book vs many books — <em>gusta</em> or <em>gustan</em>?” → <em>gusta</em> / <em>gustan</em>. · (2) “feeling right now — which verb?” → <em>estar</em> (estoy).<br>
+        <span class="ak-paso">Guided pass 1 (escoge):</span> 1. Me <em>gusta</em> el fútbol. · 2. Me <em>gustan</em> las clases de arte. · 3. Me <em>gusta</em> la música. · 4. Me <em>gustan</em> los deportes. · 5. Yo <em>estoy</em> contento/a hoy. · 6. ¿Cómo <em>estás</em> tú?<br>
+        <span class="ak-paso">Guided pass 2 (interleave):</span> 1. Me <em>gustan</em> los libros de aventura. · 2. Hoy yo <em>estoy</em> cansado/a. · 3. Yo <em>tengo</em> dos clases de ciencia. · 4. No me <em>gusta</em> la tarea. · 5. Mi amigo <em>está</em> nervioso antes del examen. · 6. ¿Te <em>gustan</em> los deportes?<br>
+        <span class="ak-paso">Output (sample):</span> <em>Me gusta la música. Me gustan los deportes. No me gusta la tarea. Estoy contento/a en la clase de arte. Estoy cansado/a en la clase de matemáticas.</em><br>
+        <span class="ak-paso">Exit ticket:</span> any correct <em>me gusta</em> + <em>me gustan</em> + <em>estoy</em> sentence.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ BLOCK 3 (TASK BLOCK — TBLT) ══════════════════ -->
+  <div class="block">
+    <div class="block-header">Bloque 3 — Task block: interests mingle (TBLT)</div>
+    <p class="objective">Objective: I can write a short profile and find classmates with a shared interest.</p>
+    <p><strong>Mode:</strong> Interpersonal + Presentational (writing)</p>
+
+    <div class="step-container">
+      <div class="step-header">Sequence + timing — TBLT nesting (ADR 0011)</div>
+      <div class="list-item"><span class="num">1.</span><span class="content"><strong>Do-Now — spiral (Bloque 2)</strong> <span class="timing">(8)</span> — one <em>me gusta</em> sentence + one feeling (<em>estoy…</em>).</span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content"><strong>Pre-task</strong> <span class="timing">(~17)</span> — <em>from the imported TBLT:</em> write the <em>Todo sobre mí</em> profile (collect: writing sample).</span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content"><strong>Main-task</strong> <span class="timing">(~63)</span> — <em>from the imported TBLT:</em> mingle → find shared interests, report one class pattern. Replaces input/practice/output. <strong>Duration-sized to fill the block</strong> (ADR 0017).</span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content"><strong>Reflection</strong> — <em>not here:</em> opens Semana 3 · Bloque 1, replacing that block's exit ticket.</span></div>
+    </div>
+
+    <div class="tblt-embed">
+      <div class="tblt-embed-label">TBLT slot — this week's task</div>
+      <div class="tblt-part tblt-placeholder">Drop the Week 2 TBLT (interests mingle → class pattern) into <strong>tblt-imports/week-02/</strong>. The Engine reskins its pre-task + main-task into this block and never alters the task content. <strong>Request ~80 min</strong> (pre ~15–20 · main ~60–65, ADR 0017). No file present in this sample — this is the empty slot.</div>
+    </div>
+
+    <p><strong>Extension (Reto extra):</strong> A follow-up question you asked during the mingle.</p>
+    <p class="why-note"><strong>Why:</strong> Week 2's task <em>is</em> the mingle → report-a-pattern (calendar). The Engine owns Blocks 1–2 (ser/tener, gustar/estar) and hands the task block to the imported TBLT — one major task cycle (ADR 0019).</p>
+    <p><strong>Materials:</strong> Lesson §Bloque 3; the imported TBLT from tblt-imports/week-02; collected profiles; primary-source QR.</p>
+
+    <div class="teacher-section">
+      <div class="teacher-section-title">Criteria — Bloque 3</div>
+      <div class="teacher-answer-key">
+        <span class="ak-paso">Profile + mingle (calendar criteria):</span> gives details (name, age, origin, ≥2 likes) · asks a follow-up during the mingle · reports one class pattern. Update the Class-Progress Record: note <em>ser/estar</em> readiness before the Week 3 contrast beat.
+      </div>
+    </div>
+  </div>
+
+  <div class="teacher-section">
+    <div class="teacher-section-title">After the week</div>
+    <div class="teacher-note">
+      <strong>Differentiation (Weekly Approval):</strong> universal supports (word banks, frames) are in the Lesson. Decide whether any 504/IEP need calls for a <em>Lesson Variant</em>. <br>
+      <strong>Class-Progress Record:</strong> did <em>ser</em> and <em>estar</em> encode separately? Week 3 Block 1 is the contrast beat — flag any class still shaky on either one so it spirals sooner.
+    </div>
+  </div>
+
+  <div class="activity-footer">
+    Semana 2 · Teacher Guide · Spanish II · Draft for teacher judgment — not a finished decision.
+  </div>
+
+</body>
+</html>
