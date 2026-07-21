@@ -146,7 +146,9 @@
   }
   table.year tr.built td.wk::after { content: " ●"; color: var(--accent); }
   .modes { display: inline-flex; gap: 0.25rem; flex-wrap: wrap; }
+  abbr.mode { text-decoration: none; cursor: help; }
   .mode { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; border: 1px solid var(--rule); border-radius: 5px; padding: 0.02rem 0.32rem; color: var(--ink-2); }
+  .legend-top { margin: 0 0 0.8rem; }
   .legend { font-size: 0.8rem; color: var(--muted); margin-top: 0.8rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
   .legend .dot { color: var(--accent); }
 
@@ -270,49 +272,54 @@
   <section id="year">
     <div class="wrap">
       <div class="sec-head"><span class="idx">02</span><div><h2>The year at a glance</h2><p class="sec-sub">33 instructional weeks on a spiraling proficiency arc — identity → family → school → community → the wider world → a capstone — closing with themed review windows.</p></div></div>
+      <div class="legend legend-top">
+        <span><span class="dot">●</span> = fully built below (Weeks 1–3)</span>
+        <span><strong>ACTFL modes:</strong> <strong>IP</strong> Interpersonal · <strong>IN</strong> Interpretive · <strong>PR</strong> Presentational</span>
+        <span><strong>Channel:</strong> <strong>W</strong> Writing · <strong>S</strong> Speaking</span>
+      </div>
       <div class="tablewrap">
         <table class="year">
           <thead><tr><th>Wk</th><th>Dates</th><th>Unit / theme</th><th>Modes &amp; skills</th></tr></thead>
           <tbody>
             <tr class="term"><td colspan="4">Suggested Quarters 1–2 · 2026</td></tr>
-            <tr class="built"><td class="wk">1</td><td class="dt">Aug 10–14</td><td class="theme">Course launch &amp; proficiency routines</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
-            <tr class="built"><td class="wk">2</td><td class="dt">Aug 17–21</td><td class="theme">Spanish I bridge: personal information</td><td><span class="modes"><span class="mode">IP</span><span class="mode">W</span></span></td></tr>
-            <tr class="built"><td class="wk">3</td><td class="dt">Aug 24–28</td><td class="theme">Identity and self</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">4</td><td class="dt">Aug 31–Sep 4</td><td class="theme">Family and relationships</td><td><span class="modes"><span class="mode">PR</span><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">5</td><td class="dt">Sep 8–11</td><td class="theme">Identity, culture, and belonging</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">6</td><td class="dt">Sep 14–18</td><td class="theme">School life</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">7</td><td class="dt">Sep 22–25</td><td class="theme">School routines and obligations</td><td><span class="modes"><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">8</td><td class="dt">Sep 28–Oct 2</td><td class="theme">Clubs, activities, and invitations</td><td><span class="modes"><span class="mode">IP</span><span class="mode">W</span></span></td></tr>
-            <tr><td class="wk">9</td><td class="dt">Oct 5–9</td><td class="theme">Home</td><td><span class="modes"><span class="mode">PR</span><span class="mode">W</span></span></td></tr>
-            <tr><td class="wk">10</td><td class="dt">Oct 13–16</td><td class="theme">Chores and responsibilities</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">11</td><td class="dt">Oct 19–23</td><td class="theme">Community and places in town</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">12</td><td class="dt">Oct 26–30</td><td class="theme">Directions and community problem solving</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">13</td><td class="dt">Nov 2, 4–6</td><td class="theme">Food and meals</td><td><span class="modes"><span class="mode">IP</span><span class="mode">IN</span></span></td></tr>
-            <tr><td class="wk">14</td><td class="dt">Nov 9–10, 12–13</td><td class="theme">Restaurants and menus</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">15</td><td class="dt">Nov 16–20</td><td class="theme">Health and wellness</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">16</td><td class="dt">Nov 30–Dec 4</td><td class="theme">Healthy living &amp; cultural food practices</td><td><span class="modes"><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">17</td><td class="dt">Dec 7–11</td><td class="theme">Shopping and clothing</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">18</td><td class="dt">Dec 14–18</td><td class="theme">Money, prices, and product comparisons</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
+            <tr class="built"><td class="wk">1</td><td class="dt">Aug 10–14</td><td class="theme">Course launch &amp; proficiency routines</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr class="built"><td class="wk">2</td><td class="dt">Aug 17–21</td><td class="theme">Spanish I bridge: personal information</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Writing (channel)">W</abbr></span></td></tr>
+            <tr class="built"><td class="wk">3</td><td class="dt">Aug 24–28</td><td class="theme">Identity and self</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">4</td><td class="dt">Aug 31–Sep 4</td><td class="theme">Family and relationships</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">5</td><td class="dt">Sep 8–11</td><td class="theme">Identity, culture, and belonging</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">6</td><td class="dt">Sep 14–18</td><td class="theme">School life</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">7</td><td class="dt">Sep 22–25</td><td class="theme">School routines and obligations</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Speaking (channel)">S</abbr></span></td></tr>
+            <tr><td class="wk">8</td><td class="dt">Sep 28–Oct 2</td><td class="theme">Clubs, activities, and invitations</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Writing (channel)">W</abbr></span></td></tr>
+            <tr><td class="wk">9</td><td class="dt">Oct 5–9</td><td class="theme">Home</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Writing (channel)">W</abbr></span></td></tr>
+            <tr><td class="wk">10</td><td class="dt">Oct 13–16</td><td class="theme">Chores and responsibilities</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">11</td><td class="dt">Oct 19–23</td><td class="theme">Community and places in town</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">12</td><td class="dt">Oct 26–30</td><td class="theme">Directions and community problem solving</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">13</td><td class="dt">Nov 2, 4–6</td><td class="theme">Food and meals</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Interpretive">IN</abbr></span></td></tr>
+            <tr><td class="wk">14</td><td class="dt">Nov 9–10, 12–13</td><td class="theme">Restaurants and menus</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">15</td><td class="dt">Nov 16–20</td><td class="theme">Health and wellness</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">16</td><td class="dt">Nov 30–Dec 4</td><td class="theme">Healthy living &amp; cultural food practices</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">17</td><td class="dt">Dec 7–11</td><td class="theme">Shopping and clothing</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">18</td><td class="dt">Dec 14–18</td><td class="theme">Money, prices, and product comparisons</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
             <tr class="term"><td colspan="4">Suggested Quarters 3–4 · 2027</td></tr>
-            <tr><td class="wk">19</td><td class="dt">Jan 5–8</td><td class="theme">Gifts and consumer choices</td><td><span class="modes"><span class="mode">PR</span><span class="mode">W</span></span></td></tr>
-            <tr><td class="wk">20</td><td class="dt">Jan 11–15</td><td class="theme">Travel introduction and geography</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">21</td><td class="dt">Jan 19–22</td><td class="theme">Vacation activities and weather</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">22</td><td class="dt">Jan 25–29</td><td class="theme">Travel problems and recommendations</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">23</td><td class="dt">Feb 1–5</td><td class="theme">Leisure activities</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">24</td><td class="dt">Feb 8–12</td><td class="theme">Entertainment and events</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">25</td><td class="dt">Feb 16–19</td><td class="theme">Technology and media habits</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">26</td><td class="dt">Feb 22–26</td><td class="theme">Responsible communication online</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">27</td><td class="dt">Mar 1–5</td><td class="theme">Environment and global citizenship</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">28</td><td class="dt">Mar 8–9, 11–12</td><td class="theme">Careers and workplaces</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">29</td><td class="dt">Mar 15–18</td><td class="theme">Future plans and goals</td><td><span class="modes"><span class="mode">PR</span><span class="mode">W</span></span></td></tr>
-            <tr><td class="wk">30</td><td class="dt">Mar 29–Apr 2</td><td class="theme">Careers, culture, and pathways</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">31</td><td class="dt">Apr 5–9</td><td class="theme">Intercultural connections: products, practices, perspectives</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
-            <tr><td class="wk">32</td><td class="dt">Apr 12–16</td><td class="theme">Community action capstone</td><td><span class="modes"><span class="mode">PR</span><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">33</td><td class="dt">Apr 19–23</td><td class="theme">Capstone presentations and reflection</td><td><span class="modes"><span class="mode">PR</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">19</td><td class="dt">Jan 5–8</td><td class="theme">Gifts and consumer choices</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Writing (channel)">W</abbr></span></td></tr>
+            <tr><td class="wk">20</td><td class="dt">Jan 11–15</td><td class="theme">Travel introduction and geography</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">21</td><td class="dt">Jan 19–22</td><td class="theme">Vacation activities and weather</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">22</td><td class="dt">Jan 25–29</td><td class="theme">Travel problems and recommendations</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">23</td><td class="dt">Feb 1–5</td><td class="theme">Leisure activities</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">24</td><td class="dt">Feb 8–12</td><td class="theme">Entertainment and events</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">25</td><td class="dt">Feb 16–19</td><td class="theme">Technology and media habits</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">26</td><td class="dt">Feb 22–26</td><td class="theme">Responsible communication online</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">27</td><td class="dt">Mar 1–5</td><td class="theme">Environment and global citizenship</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">28</td><td class="dt">Mar 8–9, 11–12</td><td class="theme">Careers and workplaces</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">29</td><td class="dt">Mar 15–18</td><td class="theme">Future plans and goals</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Writing (channel)">W</abbr></span></td></tr>
+            <tr><td class="wk">30</td><td class="dt">Mar 29–Apr 2</td><td class="theme">Careers, culture, and pathways</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">31</td><td class="dt">Apr 5–9</td><td class="theme">Intercultural connections: products, practices, perspectives</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
+            <tr><td class="wk">32</td><td class="dt">Apr 12–16</td><td class="theme">Community action capstone</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">33</td><td class="dt">Apr 19–23</td><td class="theme">Capstone presentations and reflection</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
             <tr class="term"><td colspan="4">Review windows · organized by communication mode</td></tr>
-            <tr><td class="wk">R1</td><td class="dt">Apr 26–30</td><td class="theme">Interpretive reading/listening by theme; targeted reteaching from capstone evidence</td><td><span class="modes"><span class="mode">IN</span></span></td></tr>
-            <tr><td class="wk">R2</td><td class="dt">May 3–7</td><td class="theme">Interpersonal speaking &amp; role-play rotations</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
-            <tr><td class="wk">R3</td><td class="dt">May 10–14</td><td class="theme">Presentational writing &amp; individual skill conferences</td><td><span class="modes"><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">R1</td><td class="dt">Apr 26–30</td><td class="theme">Interpretive reading/listening by theme; targeted reteaching from capstone evidence</td><td><span class="modes"><abbr class="mode" title="Interpretive">IN</abbr></span></td></tr>
+            <tr><td class="wk">R2</td><td class="dt">May 3–7</td><td class="theme">Interpersonal speaking &amp; role-play rotations</td><td><span class="modes"><abbr class="mode" title="Interpersonal">IP</abbr></span></td></tr>
+            <tr><td class="wk">R3</td><td class="dt">May 10–14</td><td class="theme">Presentational writing &amp; individual skill conferences</td><td><span class="modes"><abbr class="mode" title="Presentational">PR</abbr></span></td></tr>
             <tr><td class="wk">R4</td><td class="dt">May 17–Jun 10</td><td class="theme">Make-ups, speaking checks, confidence-building review</td><td><span class="modes"><span class="mode">—</span></span></td></tr>
           </tbody>
         </table>
@@ -320,7 +327,7 @@
       <div class="legend">
         <span><span class="dot">●</span> = fully built below (Weeks 1–3)</span>
         <span><strong>ACTFL modes:</strong> <strong>IP</strong> Interpersonal · <strong>IN</strong> Interpretive · <strong>PR</strong> Presentational</span>
-        <span><strong>Channel:</strong> <strong>W</strong> Writing</span>
+        <span><strong>Channel:</strong> <strong>W</strong> Writing · <strong>S</strong> Speaking</span>
       </div>
     </div>
   </section>
