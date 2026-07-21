@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 1 — ¡Bienvenidos! Español 9-II</title>
+  <style>
+/* ============================================================================
+   print.css — shared print stylesheet for Teacher Guides + Lessons
+   ----------------------------------------------------------------------------
+   Derived from the TBLT template design system (sources/9_1..9_3) so Practice
+   Engine output and imported TBLT worksheets read as one visual language
+   (ADR 0010 — design borrowed, no runtime coupling).
+
+   GUIDELINES ENCODED HERE (do not weaken):
+   - Paper: A4 portrait, 2cm margins. (To switch to US Letter, edit the @page rule
+     below — size: letter — reversing ADR 0001.)
+   - No tinted fills: sections are demarcated by borders + font weight only.
+   - Monochrome: #111 text, grays for secondary text and borders. No accent color.
+   - orphans:3 / widows:3 — no stranded lines across page breaks.
+   - break-inside: avoid on every container; break-after: avoid on headers.
+   - Font sizes in pt; write-in heights in cm. Never rem/px for print.
+   Default font is sans (Variant B). For the serif "academic" look, set
+   --font-family to the Times stack.
+   ========================================================================== */
+
+:root {
+  --page-width: 21cm;              /* on-screen page width (A4=21cm, Letter=21.6cm) */
+  --page-margin: 2cm;              /* on-screen page margin (body padding). Print margin is the literal in @page below — Firefox ignores var() there. */
+  --font-family: 'Helvetica', 'Arial', sans-serif;
+  /* serif alt: 'Times New Roman', Times, serif; */
+  --fs-base: 11pt;
+  --fs-h1: 16pt;
+  --fs-h2: 13pt;
+  --fs-h3: 11pt;
+  --fs-small: 10pt;
+  --ink: #111;
+  --ink-2: #333;
+  --ink-3: #555;
+  --ink-mute: #777;
+  --rule: #bbb;
+  --rule-soft: #ccc;
+  --write: #888;
+}
+
+/* Literal values, NOT the :root vars above: Firefox does not resolve var()
+   inside @page, so a variable here drops the margin and content runs to the
+   paper edge. Keep in sync with --page-margin. To reverse ADR 0001: size letter. */
+@page { size: A4 portrait; margin: 2cm; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Screen: render a centered "page" so left/right margins are visible in the
+   browser too (@page margins apply to print only). Print resets this below. */
+html { background: #e9e9e9; }
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--ink);
+  orphans: 3;
+  widows: 3;
+  background: #fff;
+  width: var(--page-width);
+  max-width: 100%;
+  margin: 1cm auto;
+  padding: var(--page-margin);
+  box-shadow: 0 0 0.2cm rgba(0, 0, 0, 0.25);
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
+h1 { font-size: var(--fs-h1); font-weight: bold; }
+h2 { font-size: var(--fs-h2); font-weight: bold; }
+h3 { font-size: var(--fs-h3); font-weight: bold; }
+p, li, td, th { font-size: var(--fs-base); }
+small { font-size: var(--fs-small); color: var(--ink-3); }
+
+/* ── DOCUMENT HEADER (week / block) ─────────────────────────────────────── */
+.activity-header { border-bottom: 2pt solid var(--ink); padding-bottom: 0.4cm; margin-bottom: 0.6cm; }
+.activity-header h1 { margin-bottom: 0.15cm; }
+.meta-row { display: flex; gap: 1.5cm; font-size: var(--fs-small); color: var(--ink-2); margin-top: 0.2cm; }
+.meta-row span { white-space: nowrap; }
+
+.student-info { display: flex; gap: 1.5cm; margin-top: 0.5cm; margin-bottom: 0.8cm; }
+.student-info-field { flex: 1; }
+.student-info-field label { font-size: var(--fs-small); display: block; margin-bottom: 0.1cm; }
+.student-info-field .write-line { border-bottom: 1pt solid var(--ink-3); height: 0.7cm; display: block; }
+
+/* ── BLOCK + ARC-SLOT CONTAINERS (Practice Engine) ──────────────────────── */
+/* A block may flow across pages (only its START is forced to a new page, in the
+   @media print rule below). Do NOT keep the whole block on one page — that fights
+   long deep-arc blocks. Internal slots (.step-container) stay intact; widows/
+   orphans are governed on body. */
+.block { margin-bottom: 1cm; }
+.block-header {
+  color: var(--ink);
+  border-bottom: 2pt solid var(--ink);
+  padding: 0.2cm 0;
+  font-size: var(--fs-h2);
+  font-weight: bold;
+  margin-bottom: 0.4cm;
+  break-after: avoid; page-break-after: avoid;
+}
+.objective { font-weight: bold; margin-bottom: 0.4cm; }
+
+/* arc slot = one step of Do-Now → input → practice → output → exit ticket */
+.step-container { margin-bottom: 0.9cm; break-inside: avoid; page-break-inside: avoid; }
+.step-header {
+  color: var(--ink);
+  border-bottom: 1.5pt solid var(--ink);
+  padding: 0.2cm 0;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 0.35cm;
+  break-after: avoid; page-break-after: avoid;
+}
+.step-instruction {
+  font-size: 10.5pt; font-style: italic; color: var(--ink-2);
+  margin-bottom: 0.35cm; break-after: avoid; page-break-after: avoid;
+}
+
+/* ── WRITE-IN ELEMENTS ──────────────────────────────────────────────────── */
+.write-line { border-bottom: 1pt solid var(--write); height: 0.75cm; display: block; width: 100%; margin-bottom: 0.4cm; }
+.write-box { border: 1pt solid var(--write); min-height: 2cm; width: 100%; margin-bottom: 0.5cm; display: block; }
+
+/* ── WORD BANK ──────────────────────────────────────────────────────────── */
+.word-bank { border: 1pt solid var(--rule); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.word-bank-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); margin-bottom: 0.15cm; }
+.word-bank-items { display: flex; flex-wrap: wrap; gap: 0.2cm 0.6cm; font-size: var(--fs-base); }
+.word-bank-items span { white-space: nowrap; }
+
+/* ── TABLES ─────────────────────────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; font-size: var(--fs-base); break-inside: avoid; page-break-inside: avoid; }
+thead { display: table-header-group; }
+th { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; text-align: center; font-weight: bold; font-size: 10.5pt; }
+td { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; vertical-align: top; }
+.check-cell { width: 1.8cm; text-align: center; }
+.num-cell { width: 0.7cm; text-align: center; color: var(--ink-3); }
+
+/* ── TWO-COLUMN LAYOUTS (match, sort) ───────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
+.col-box { border: 1pt solid var(--rule); padding: 0.3cm; break-inside: avoid; page-break-inside: avoid; }
+.col-header { font-weight: bold; font-size: 10.5pt; text-align: center; border-bottom: 1pt solid var(--rule); padding: 0.1cm 0.2cm; margin-bottom: 0.2cm; break-after: avoid; page-break-after: avoid; }
+
+/* ── LIST ITEMS (numbered/lettered exercises) ───────────────────────────── */
+.list-item { display: flex; align-items: flex-start; gap: 0.3cm; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
+.list-item .num { min-width: 0.6cm; font-weight: bold; color: var(--ink-3); padding-top: 0.02cm; }
+.list-item .content { flex: 1; }
+
+/* ── SENTENCE FRAMES ────────────────────────────────────────────────────── */
+.frame-section { margin-bottom: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
+.frame-model { border-left: 3pt solid var(--ink-3); padding: 0.2cm 0.4cm; font-style: italic; font-size: 10.5pt; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
+.frame-model-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; color: #666; display: block; margin-bottom: 0.05cm; font-style: normal; }
+
+/* ── RATING SCALE (self-assessment / exit ticket, from TBLT activity) ────── */
+.rating-scale { margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.scale-title { font-weight: bold; font-size: 10.5pt; margin-bottom: 0.1cm; }
+.scale-labels { display: flex; justify-content: space-between; font-size: var(--fs-small); color: var(--ink-3); }
+.scale-numbers { display: flex; gap: 0.4cm; }
+.scale-item { display: inline-flex; align-items: center; gap: 0.1cm; }
+.scale-radio { width: 0.4cm; height: 0.4cm; border: 1pt solid var(--write); border-radius: 50%; display: inline-block; }
+
+/* ── PRACTICE-ENGINE CALLOUTS ───────────────────────────────────────────── */
+/* Extension ("Reto extra") — bordered box, no fill */
+.extension { border: 1pt solid var(--rule); border-left: 3pt solid var(--ink); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.extension-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); margin-bottom: 0.1cm; }
+/* Primary source per week — QR/link line */
+.primary-source { font-size: var(--fs-small); color: var(--ink-2); border: 1pt dashed var(--rule); padding: 0.2cm 0.35cm; margin-bottom: 0.4cm; }
+/* Family take-home + "ask your teacher" (Lesson only) */
+.take-home { font-size: var(--fs-small); color: var(--ink-2); margin-top: 0.3cm; }
+.ask-teacher { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); margin-top: 0.3cm; }
+
+/* ── TBLT IMPORTED-TASK COMPONENTS (reskinned from tblt-imports output) ──── */
+/* Generic bordered callout — survival-phrase reminders, time/negotiation
+   prompts, bridge notes. Same monochrome-box language as .extension/.word-bank. */
+.callout { border: 1pt solid var(--ink-2); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
+.callout-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-2); margin-bottom: 0.15cm; }
+/* Example/model row inside an imported table (interview grid, sort grid) */
+.example-row td { font-style: italic; color: var(--ink-3); }
+/* Self-correction checklist (Post-Task) — distinct from .list-item (num+content) */
+.checklist-item { display: flex; align-items: flex-start; gap: 0.3cm; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
+.checklist-box { width: 0.35cm; height: 0.35cm; border: 1pt solid var(--ink-2); flex-shrink: 0; margin-top: 0.05cm; }
+
+/* ── TBLT EMBED (imported task nested into the task block, ADR 0011) ─────── */
+/* Heavier border signals an external artifact reskinned into the shared system.
+   The Practice Engine marks this slot; it never generates the task inside. */
+.tblt-embed { border: 1.5pt solid var(--ink); padding: 0.3cm 0.4cm; margin-bottom: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
+.tblt-embed-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); border-bottom: 1pt solid var(--rule); padding-bottom: 0.1cm; margin-bottom: 0.25cm; }
+.tblt-part { margin: 0.2cm 0; }
+.tblt-part-label { font-weight: bold; }
+.tblt-placeholder { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); }
+
+/* ── FOOTER ─────────────────────────────────────────────────────────────── */
+.activity-footer { margin-top: 1cm; border-top: 1pt solid var(--rule-soft); padding-top: 0.3cm; font-size: var(--fs-small); color: var(--ink-mute); text-align: center; break-inside: avoid; page-break-inside: avoid; }
+
+/* ── TEACHER GUIDE ELEMENTS (Guide file only — never in the Lesson) ──────── */
+/* ADR 0009: the Guide is a SEPARATE FILE, not a teacher-page appended to the
+   student file. These classes style the Guide; the Lesson never includes them. */
+.teacher-section { margin-bottom: 0.8rem; break-inside: avoid; page-break-inside: avoid; }
+.teacher-section-title { font-size: 11pt; font-weight: bold; border-bottom: 1pt solid var(--rule); padding-bottom: 0.2rem; margin-bottom: 0.3rem; }
+.teacher-note { font-size: var(--fs-small); line-height: 1.6; }
+.teacher-answer-key { font-size: var(--fs-small); line-height: 1.7; }
+.teacher-answer-key .ak-paso { font-weight: bold; margin-top: 0.4rem; }
+/* "hard on purpose" note (ADR 0012) — Guide only */
+.hard-note { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); border-left: 2pt solid var(--ink-3); padding-left: 0.3cm; margin: 0.2cm 0; }
+.why-note { font-size: var(--fs-small); color: var(--ink-2); }
+.timing { font-size: var(--fs-small); color: var(--ink-3); font-weight: normal; }
+
+@media print {
+  html { background: #fff; }
+  /* @page owns the print margins — clear the on-screen page simulation. */
+  body { width: auto; max-width: none; margin: 0; padding: 0; box-shadow: none; background: #fff; }
+
+  /* Each block starts on a fresh page so the teacher never cuts one block off
+     another at the copier. The FIRST block stays with the week header — it
+     directly follows .activity-header (Guide) or .student-info (Lesson), so
+     those two adjacencies opt back out of the page break. */
+  .block { break-before: page; page-break-before: always; }
+  .activity-header + .block,
+  .student-info + .block { break-before: auto; page-break-before: auto; }
+}
+
+/* Screen-only: mirror the print pagination during an HTML review, since the
+   @media print page breaks above are invisible on screen. A divider marks where
+   each block will begin a new printed page; the first block (right after the
+   week header) shows none. Never rendered in print. */
+@media screen {
+  .block::before {
+    content: "▲ nueva página / new page ▲";
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    border-top: 2px dashed var(--rule);
+    padding-top: 0.35cm;
+    margin: 1cm 0 0.6cm;
+  }
+  .activity-header + .block::before,
+  .student-info + .block::before { content: none; border-top: 0; padding-top: 0; margin: 0; }
+}
+
+</style>
+</head>
+<body>
+
+  <div class="activity-header">
+    <h1>Semana 1 — ¡Bienvenidos a Español 9-II!</h1>
+    <div class="meta-row">
+      <span>10–14 de agosto</span>
+      <span>Sr. Azuaje · Miramar HS</span>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <div class="student-info-field"><label>Nombre:</label><span class="write-line"></span></div>
+    <div class="student-info-field"><label>Fecha:</label><span class="write-line"></span></div>
+    <div class="student-info-field"><label>Clase / Período:</label><span class="write-line"></span></div>
+  </div>
+
+  <!-- ══════════════════ BLOQUE 1 ══════════════════ -->
+  <div class="block">
+    <div class="block-header">Bloque 1 — Saludos y frases para la clase</div>
+    <p class="objective">Objetivo: Puedo saludar, presentarme y pedir ayuda en español.</p>
+
+    <div class="step-container">
+      <div class="step-header">Do-Now</div>
+      <p class="step-instruction">Escribe de memoria: (1) un saludo, (2) cómo dices tu nombre, (3) una palabra de la clase, (4) los números del 1 al 5.</p>
+      <span class="write-line"></span><span class="write-line"></span>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Input — Frases de supervivencia</div>
+      <div class="word-bank">
+        <div class="word-bank-label">Banco de frases</div>
+        <div class="word-bank-items">
+          <span>Hola / Buenos días</span><span>Necesito ayuda.</span><span>No entiendo.</span>
+          <span>¿Cómo se dice ___?</span><span>Repite, por favor.</span><span>¿Puedo ir al baño?</span>
+          <span>Adiós / Hasta luego</span><span>Me llamo ___.</span>
+        </div>
+      </div>
+      <p class="step-instruction">Escucha y repite. Subraya las dos frases que más vas a necesitar.</p>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Guided practice 1 — Situación → frase</div>
+      <p class="step-instruction">Escribe la frase del banco para cada situación.</p>
+      <div class="list-item"><span class="num">1.</span><span class="content">No comprendes una palabra: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content">Necesitas saber una palabra nueva: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content">El profesor habla muy rápido: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content">Quieres ayuda: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content">Necesitas ir al baño: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">6.</span><span class="content">Saludas a la profesora por la mañana: <span class="write-line"></span></span></div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Tarea comunicativa — Mingle</div>
+      <p class="step-instruction">Saluda a 6 compañeros. Pídele ayuda a cada uno con una frase diferente. Escribe su nombre y la frase que usaste.</p>
+      <div class="frame-model"><span class="frame-model-label">Marcos</span>Hola, me llamo ___. / ¿Cómo se dice ___? / Necesito ayuda con ___.</div>
+      <div class="list-item"><span class="num">1.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">6.</span><span class="content"><span class="write-line"></span></span></div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Guided practice 2 — Clasifica</div>
+      <p class="step-instruction">Escribe cada frase en la columna correcta: <em>Hola · Buenos días · Adiós · Hasta luego · Necesito ayuda · No entiendo · ¿Puedo ir al baño? · Repite, por favor.</em></p>
+      <div class="two-col">
+        <div class="col-box"><div class="col-header">Saludos / despedidas</div><span class="write-line"></span><span class="write-line"></span></div>
+        <div class="col-box"><div class="col-header">Pedir ayuda</div><span class="write-line"></span><span class="write-line"></span></div>
+      </div>
+      <div class="col-box"><div class="col-header">Frases de clase</div><span class="write-line"></span><span class="write-line"></span></div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Output — Auto-presentación</div>
+      <p class="step-instruction">Escribe 4–5 oraciones: saludo + tu nombre + de dónde eres + tu edad + una cosa con la que necesitas ayuda.</p>
+      <span class="write-box"></span>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Exit ticket</div>
+      <p class="step-instruction">Escribe la frase para cada situación.</p>
+      <div class="list-item"><span class="num">1.</span><span class="content">No entiendes: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content">Necesitas ir al baño: <span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content">Necesitas ayuda: <span class="write-line"></span></span></div>
+    </div>
+
+    <div class="extension">
+      <div class="extension-label">Reto extra</div>
+      Escribe dos frases más que te gustaría saber. Las traducimos juntos.
+    </div>
+  </div>
+
+  <!-- ══════════════════ BLOQUE 2 ══════════════════ -->
+  <div class="block">
+    <div class="block-header">Bloque 2 — Palabras interrogativas e información personal</div>
+    <p class="objective">Objetivo: Puedo hacer y contestar preguntas básicas sobre mí.</p>
+
+    <div class="step-container">
+      <div class="step-header">Do-Now</div>
+      <p class="step-instruction">Escribe la frase de supervivencia para cada situación: (1) no entiendes, (2) necesitas una palabra, (3) necesitas ayuda, (4) el profe habla muy rápido.</p>
+      <span class="write-line"></span><span class="write-line"></span>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Input — Palabras interrogativas</div>
+      <div class="word-bank">
+        <div class="word-bank-label">Banco</div>
+        <div class="word-bank-items">
+          <span>¿Cómo?</span><span>¿Qué?</span><span>¿Dónde?</span><span>¿De dónde?</span><span>¿Cuántos?</span><span>¿Cómo estás?</span>
+        </div>
+      </div>
+      <div class="frame-model"><span class="frame-model-label">Modelos</span>¿Cómo te llamas? — Me llamo… · ¿De dónde eres? — Soy de… · ¿Cuántos años tienes? — Tengo… años.</div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Guided practice 1 — Completa la pregunta</div>
+      <p class="step-instruction">Completa cada pregunta con la palabra interrogativa correcta.</p>
+      <div class="list-item"><span class="num">1.</span><span class="content">¿______ te llamas?</span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content">¿______ eres? (país / ciudad)</span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content">¿______ vives?</span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content">¿______ te gusta?</span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content">¿______ años tienes?</span></div>
+      <div class="list-item"><span class="num">6.</span><span class="content">¿______ estás hoy?</span></div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Tarea comunicativa — Entrevista</div>
+      <p class="step-instruction">Hazle 6 preguntas a tu compañero/a (nombre, origen, edad, un gusto, dónde vive, cómo está). Escribe sus respuestas.</p>
+      <div class="frame-model"><span class="frame-model-label">Marcos</span>¿Cómo te llamas? / ¿De dónde eres? / ¿Cuántos años tienes? / ¿Qué te gusta? / ¿Dónde vives? / ¿Cómo estás?</div>
+      <div class="list-item"><span class="num">1.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content"><span class="write-line"></span></span></div>
+      <div class="list-item"><span class="num">6.</span><span class="content"><span class="write-line"></span></span></div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Guided practice 2 — Empareja pregunta y respuesta</div>
+      <p class="step-instruction">Escribe la letra de la respuesta correcta al lado de cada pregunta.</p>
+      <div class="two-col">
+        <div class="col-box">
+          <div class="col-header">Preguntas</div>
+          <div class="list-item"><span class="num">1.</span><span class="content">¿Cómo te llamas?</span></div>
+          <div class="list-item"><span class="num">2.</span><span class="content">¿De dónde eres?</span></div>
+          <div class="list-item"><span class="num">3.</span><span class="content">¿Cuántos años tienes?</span></div>
+          <div class="list-item"><span class="num">4.</span><span class="content">¿Qué te gusta?</span></div>
+          <div class="list-item"><span class="num">5.</span><span class="content">¿Dónde vives?</span></div>
+          <div class="list-item"><span class="num">6.</span><span class="content">¿Cómo estás?</span></div>
+          <div class="list-item"><span class="num">7.</span><span class="content">¿Necesitas ayuda?</span></div>
+        </div>
+        <div class="col-box">
+          <div class="col-header">Respuestas</div>
+          <div class="list-item"><span class="num">a.</span><span class="content">Tengo 14 años.</span></div>
+          <div class="list-item"><span class="num">b.</span><span class="content">Soy de Miami.</span></div>
+          <div class="list-item"><span class="num">c.</span><span class="content">Me llamo Ana.</span></div>
+          <div class="list-item"><span class="num">d.</span><span class="content">Vivo en Hollywood.</span></div>
+          <div class="list-item"><span class="num">e.</span><span class="content">Me gusta la música.</span></div>
+          <div class="list-item"><span class="num">f.</span><span class="content">Sí, no entiendo.</span></div>
+          <div class="list-item"><span class="num">g.</span><span class="content">Estoy bien.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Output — <em>Todo sobre mí</em></div>
+      <p class="step-instruction">Escribe 5 oraciones sobre ti: nombre, de dónde eres, tu edad, y dos cosas que te gustan.</p>
+      <span class="write-box"></span>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Exit ticket</div>
+      <p class="step-instruction">Contesta en oraciones completas: (1) ¿Cómo te llamas? (2) ¿De dónde eres? (3) ¿Cuántos años tienes?</p>
+      <span class="write-line"></span><span class="write-line"></span><span class="write-line"></span>
+    </div>
+
+    <div class="extension">
+      <div class="extension-label">Reto extra</div>
+      Escribe una pregunta que le harías a un/a estudiante de intercambio nuevo/a.
+    </div>
+  </div>
+
+  <!-- ══════════════════ BLOQUE 3 (TASK BLOCK — TBLT) ══════════════════ -->
+  <div class="block">
+    <div class="block-header">Bloque 3 — Tarea: encuesta de clase → perfil de la clase</div>
+    <p class="objective">Objetivo: Puedo compartir información básica sobre mí y contribuir al perfil de la clase.</p>
+
+    <div class="step-container">
+      <div class="step-header">Do-Now</div>
+      <p class="step-instruction">Escribe dos palabras interrogativas y una pregunta con cada una.</p>
+      <span class="write-line"></span><span class="write-line"></span>
+    </div>
+
+    <!-- TBLT EMBED — imported task reskinned into this block (ADR 0010/0011): pre-task
+         follows the Do-Now, main-task is the block's core, reflection opens Semana 2 · Bloque 1. -->
+    <div class="tblt-embed">
+      <div class="tblt-embed-label">Tarea comunicativa — Encuesta de clase → perfil de la clase</div>
+      <div class="tblt-part">Pre-tarea (calienta las palabras) + tarea principal (la encuesta). Trabajo individual, en parejas y circulando por la clase. / Warm up your words, then survey the class.</div>
+    </div>
+
+    <!-- ── PRE-TASK (Round 2) ─────────────────────────────────────────── -->
+    <div class="step-container">
+      <div class="step-header">Pre-tarea 1 — What do you already know?</div>
+      <p class="step-instruction">Brainstorm first — no peeking. In each box, write every Spanish word or phrase you can already recall. Then compare with a partner and add theirs in a different color.</p>
+      <table>
+        <thead><tr>
+          <th>Ways to <strong>greet</strong> or <strong>say goodbye</strong></th>
+          <th>Ways to <strong>ask for help</strong> in class</th>
+          <th>Question words (<em>who / what / where…</em>)</th>
+        </tr></thead>
+        <tbody><tr>
+          <td><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></td>
+          <td><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></td>
+          <td><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Pre-tarea 2 — Odd one out</div>
+      <p class="step-instruction">In each row, three expressions belong to the same group and one does not. <strong>Circle</strong> the one that does not belong, then write <strong>why</strong> in English.</p>
+      <table>
+        <thead><tr><th style="width:62%">Which one does NOT belong?</th><th>Why?</th></tr></thead>
+        <tbody>
+          <tr><td><em>hola</em> / <em>buenos días</em> / <em>adiós</em> / <em>no entiendo</em></td><td><span class="write-line"></span></td></tr>
+          <tr><td><em>qué</em> / <em>cómo</em> / <em>cuándo</em> / <em>me llamo</em></td><td><span class="write-line"></span></td></tr>
+          <tr><td><em>dónde</em> / <em>de dónde</em> / <em>cuántos</em> / <em>soy de</em></td><td><span class="write-line"></span></td></tr>
+          <tr><td><em>¿cómo se dice…?</em> / <em>repita por favor</em> / <em>¿puedo…?</em> / <em>tengo … años</em></td><td><span class="write-line"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Pre-tarea 3 — Build the question (Bridge to the task)</div>
+      <div class="callout">
+        <div class="callout-label">Why this matters</div>
+        In the survey, every classmate holds only their <strong>own</strong> name, origin, and age — and each person may give you <strong>only one answer</strong>, so you must keep moving to new classmates to build the whole class profile. First, lock in the three questions you will need.
+      </div>
+      <p class="step-instruction">Choose the word that correctly completes each question. Circle one.</p>
+      <div class="list-item"><span class="num">1.</span><span class="content">¿______ <em>te llamas</em>? — <em>Me llamo</em> ______. &nbsp; <strong>a)</strong> <em>Qué</em> &nbsp; <strong>b)</strong> <em>Cómo</em> &nbsp; <strong>c)</strong> <em>Dónde</em></span></div>
+      <div class="list-item"><span class="num">2.</span><span class="content">¿<em>De</em> ______ <em>eres</em>? — <em>Soy de</em> ______. &nbsp; <strong>a)</strong> <em>dónde</em> &nbsp; <strong>b)</strong> <em>cuándo</em> &nbsp; <strong>c)</strong> <em>qué</em></span></div>
+      <div class="list-item"><span class="num">3.</span><span class="content">¿______ <em>años tienes</em>? — <em>Tengo</em> ______ <em>años</em>. &nbsp; <strong>a)</strong> <em>Cómo</em> &nbsp; <strong>b)</strong> <em>Cuántos</em> &nbsp; <strong>c)</strong> <em>Cuándo</em></span></div>
+      <div class="list-item"><span class="num">4.</span><span class="content">Your partner speaks too fast and you are lost. Which phrase asks them to repeat? &nbsp; <strong>a)</strong> <em>repita por favor</em> &nbsp; <strong>b)</strong> <em>buenos días</em> &nbsp; <strong>c)</strong> <em>soy de</em></span></div>
+      <div class="list-item"><span class="num">5.</span><span class="content">You need a Spanish word you do not know. What do you ask? &nbsp; <strong>a)</strong> <em>¿puedo…?</em> &nbsp; <strong>b)</strong> <em>¿cómo se dice…?</em> &nbsp; <strong>c)</strong> <em>adiós</em></span></div>
+      <p class="step-instruction">Now rehearse <strong>your own true answers</strong> out loud, then write them. You will say these in the task:</p>
+      <p><em>Me llamo</em> <span class="write-line"></span></p>
+      <p><em>Soy de</em> <span class="write-line"></span></p>
+      <p><em>Tengo</em> <span class="write-line"></span> <em>años</em>.</p>
+    </div>
+
+    <!-- ── MAIN TASK (Round 1) ────────────────────────────────────────── -->
+    <div class="step-container">
+      <div class="step-header">Paso 1 — Warm-up: sort the expressions</div>
+      <p class="step-instruction">Write each expression in the correct column: is it a <strong>greeting</strong>, or a way to <strong>ask for help</strong> in class?</p>
+      <div class="word-bank">
+        <div class="word-bank-label">Banco de frases</div>
+        <div class="word-bank-items">
+          <span>hola</span><span>buenos días</span><span>adiós</span><span>¿cómo se dice…?</span><span>no entiendo</span><span>repita por favor</span>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="col-box"><div class="col-header">Greetings</div><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></div>
+        <div class="col-box"><div class="col-header">Asking for help</div><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></div>
+      </div>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Paso 2 — About me: complete the frames</div>
+      <p class="step-instruction">Finish each sentence about yourself. You will read these aloud in Paso 3.</p>
+      <p><em>Me llamo</em> <span class="write-line"></span></p>
+      <p><em>Soy de</em> <span class="write-line"></span></p>
+      <p><em>Tengo</em> <span class="write-line"></span> <em>años</em>.</p>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Paso 3 — Interview your partner</div>
+      <p class="step-instruction">Ask your partner the three questions. Write their answers on the lines. Use only Spanish. The question words are your toolbox:</p>
+      <div class="word-bank">
+        <div class="word-bank-label">Palabras interrogativas</div>
+        <div class="word-bank-items">
+          <span>qué</span><span>cómo</span><span>cuándo</span><span>dónde</span><span>de dónde</span><span>cuántos</span>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th style="width:45%">Ask (in Spanish)</th><th>Your partner's answer</th></tr></thead>
+        <tbody>
+          <tr><td><em>¿Cómo te llamas?</em></td><td><span class="write-line"></span></td></tr>
+          <tr><td><em>¿De dónde eres?</em></td><td><span class="write-line"></span></td></tr>
+          <tr><td><em>¿Cuántos años tienes?</em></td><td><span class="write-line"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Paso 4 — Class survey: talk to five different classmates</div>
+      <p class="step-instruction"><strong>Rule:</strong> each classmate may answer only <strong>one</strong> question for you, so you must keep moving to new people. Fill every box. When you get stuck, ask for help in Spanish:</p>
+      <div class="callout">
+        <div class="callout-label">Ask for help</div>
+        <em>¿cómo se dice…?</em> &nbsp;·&nbsp; <em>no entiendo</em> &nbsp;·&nbsp; <em>¿puedo…?</em> &nbsp;·&nbsp; <em>repita por favor</em>
+      </div>
+      <table>
+        <thead><tr>
+          <th style="width:16%">Classmate</th>
+          <th><em>Me llamo</em> (name)</th>
+          <th><em>Soy de</em> (from)</th>
+          <th><em>Tengo … años</em> (age)</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span class="write-line"></span></td><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+          <tr><td>2</td><td><span class="write-line"></span></td><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+          <tr><td>3</td><td><span class="write-line"></span></td><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+          <tr><td>4</td><td><span class="write-line"></span></td><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+          <tr><td>5</td><td><span class="write-line"></span></td><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step-container">
+      <div class="step-header">Paso 5 — Class profile: report the pattern</div>
+      <p class="step-instruction">Use your survey grid to complete the class profile. Count how many classmates gave each origin.</p>
+      <table>
+        <thead><tr><th>Origin (from <em>soy de</em> …)</th><th># of classmates</th></tr></thead>
+        <tbody>
+          <tr><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+          <tr><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+          <tr><td><span class="write-line"></span></td><td><span class="write-line"></span></td></tr>
+        </tbody>
+      </table>
+      <p>The most common answer to <em>¿de dónde eres?</em> in my class was: <span class="write-line"></span></p>
+    </div>
+
+    <div class="extension">
+      <div class="extension-label">Reto extra</div>
+      Añade una oración sobre tu verano: <em>“Este verano…”.</em>
+    </div>
+
+    <p class="take-home"><strong>En casa:</strong> Enséñale a alguien de tu familia tres frases en español que puedes usar cuando necesitas ayuda en clase.</p>
+    <p class="ask-teacher">¿Tienes preguntas? Pregúntale a tu profesor. / Have questions? Ask your teacher.</p>
+  </div>
+
+  <div class="activity-footer">
+    Semana 1 · Español 9-II · Sr. Azuaje
+  </div>
+
+</body>
+</html>

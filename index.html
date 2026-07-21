@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español 9-II Teaching Portfolio — Sr. Azuaje (Miramar HS, Broward)</title>
+</head>
+<body>
+<style>
+  :root {
+    --font-display: "Palatino Linotype", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --font-sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+    --ground: #faf7f6;
+    --surface: #ffffff;
+    --surface-2: #fdfaf9;
+    --ink: #1a1614;
+    --ink-2: #4a4240;
+    --muted: #756b68;
+    --rule: #e2d8d6;
+    --rule-soft: #efe8e6;
+    --brand: #85000e;
+    --brand-ink: #ffffff;
+    --accent: #a60012;
+    --accent-ink: #85000e;
+    --accent-soft: #fbecee;
+    --slate: #4a4240;
+
+    --maxw: 62rem;
+    --step: clamp(1.5rem, 4vw, 2.75rem);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #16110f; --surface: #1e1917; --surface-2: #1b1614; --ink: #efe7e4; --ink-2: #c7bcb8;
+      --muted: #8f8380; --rule: #362c2a; --rule-soft: #281f1d; --brand: #85000e; --brand-ink: #ffffff;
+      --accent: #f08a91; --accent-ink: #f5a8ad; --accent-soft: #33191b; --slate: #b8aca8;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #faf7f6; --surface: #ffffff; --surface-2: #fdfaf9; --ink: #1a1614; --ink-2: #4a4240;
+    --muted: #756b68; --rule: #e2d8d6; --rule-soft: #efe8e6; --brand: #85000e; --brand-ink: #ffffff;
+    --accent: #a60012; --accent-ink: #85000e; --accent-soft: #fbecee; --slate: #4a4240;
+  }
+  :root[data-theme="dark"] {
+    --ground: #16110f; --surface: #1e1917; --surface-2: #1b1614; --ink: #efe7e4; --ink-2: #c7bcb8;
+    --muted: #8f8380; --rule: #362c2a; --rule-soft: #281f1d; --brand: #85000e; --brand-ink: #ffffff;
+    --accent: #f08a91; --accent-ink: #f5a8ad; --accent-soft: #33191b; --slate: #b8aca8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ── top bar ── */
+  .topbar { position: sticky; top: 0; z-index: 20; background: var(--brand); color: var(--brand-ink); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.7rem 0; flex-wrap: wrap; }
+  .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.01em; }
+  .brand .tile { opacity: 0.6; }
+  .nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+  .nav a {
+    font-size: 0.82rem; text-decoration: none; color: rgba(255,255,255,0.86);
+    padding: 0.35rem 0.6rem; border-radius: 999px; letter-spacing: 0.01em;
+  }
+  .nav a:hover { color: #ffffff; background: rgba(255,255,255,0.16); }
+  .nav a:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; border-radius: 4px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  /* ── hero ── */
+  .hero { background: var(--brand); color: var(--brand-ink); padding: calc(var(--step) * 1.3) 0 calc(var(--step) * 1.1); }
+  .eyebrow {
+    font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.18em;
+    font-size: 0.72rem; color: rgba(255,255,255,0.78); margin: 0 0 0.9rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700; text-wrap: balance;
+    font-size: clamp(2rem, 6vw, 3.1rem); line-height: 1.05; margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  }
+  .hero .role { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: rgba(255,255,255,0.82); margin: 0 0 1.4rem; }
+  .hero .thesis { font-size: 1.12rem; max-width: 42ch; color: rgba(255,255,255,0.94); margin: 0 0 1.6rem; }
+  .hero .thesis strong { color: #ffffff; }
+  .facts { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .fact {
+    display: flex; flex-direction: column; gap: 0.1rem;
+    border: 1px solid rgba(255,255,255,0.24); border-radius: 10px; background: rgba(255,255,255,0.07);
+    padding: 0.55rem 0.85rem;
+  }
+  .fact .k { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.7); }
+  .fact .v { font-weight: 600; font-size: 0.95rem; color: #ffffff; }
+
+  /* ── section scaffolding ── */
+  section { padding: var(--step) 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 4rem; }
+  .sec-head { display: flex; align-items: baseline; gap: 0.8rem; margin: 0 0 1.4rem; }
+  .sec-head .idx { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); padding-top: 0.2rem; }
+  h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.05rem); margin: 0; letter-spacing: -0.01em; text-wrap: balance; color: var(--accent-ink); }
+  .sec-sub { color: var(--muted); margin: 0.3rem 0 0; font-size: 0.98rem; }
+
+  /* ── approach cards ── */
+  .rhythm { display: grid; gap: 0.7rem; margin: 0; padding: 0; list-style: none; }
+  .rhythm li {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 0.5rem 1rem; align-items: baseline;
+    border: 1px solid var(--rule); border-radius: 12px; background: var(--surface);
+    padding: 0.9rem 1.1rem;
+  }
+  .rhythm .n {
+    font-family: var(--font-mono); font-weight: 700; color: var(--accent-ink);
+    background: var(--accent-soft); border-radius: 8px; padding: 0.15rem 0.55rem; font-size: 0.85rem; align-self: start;
+  }
+  .rhythm .body strong { display: block; font-size: 1rem; }
+  .rhythm .body span { color: var(--ink-2); font-size: 0.93rem; }
+  .rhythm .t { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-top: 1.6rem; }
+  @media (max-width: 620px) { .cols { grid-template-columns: 1fr; } .rhythm li { grid-template-columns: auto 1fr; } .rhythm .t { grid-column: 2; } }
+  .panel { border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); padding: 1.1rem 1.2rem; }
+  .panel h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 0.7rem; color: var(--accent-ink); }
+  .weekflow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
+  .weekflow li { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.7rem; align-items: baseline; font-size: 0.93rem; }
+  .weekflow .d { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  .principles { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+  .principles li { padding-left: 1.1rem; position: relative; font-size: 0.95rem; color: var(--ink-2); }
+  .principles li::before { content: ""; position: absolute; left: 0; top: 0.62rem; width: 0.5rem; height: 0.5rem; background: var(--accent); border-radius: 2px; transform: rotate(45deg); }
+  .principles strong { color: var(--ink); }
+
+  /* ── year table ── */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); }
+  table.year { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 40rem; }
+  table.year th, table.year td { text-align: left; padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  table.year thead th { position: sticky; top: 0; background: var(--surface-2); font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); border-bottom: 1px solid var(--rule); }
+  table.year td.wk { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; white-space: nowrap; }
+  table.year td.dt { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; font-size: 0.82rem; }
+  table.year .theme { font-weight: 600; }
+  table.year tr.term td {
+    background: var(--accent-soft); color: var(--accent-ink);
+    font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;
+  }
+  table.year tr.built td.wk::after { content: " ●"; color: var(--accent); }
+  .modes { display: inline-flex; gap: 0.25rem; flex-wrap: wrap; }
+  .mode { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; border: 1px solid var(--rule); border-radius: 5px; padding: 0.02rem 0.32rem; color: var(--ink-2); }
+  .legend { font-size: 0.8rem; color: var(--muted); margin-top: 0.8rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .legend .dot { color: var(--accent); }
+
+  /* ── week detail ── */
+  .week { border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); overflow: hidden; margin-bottom: 1.4rem; }
+  .week-head { padding: 1.1rem 1.3rem; border-bottom: 1px solid var(--rule); background: var(--surface-2); }
+  .week-head .kicker { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.3rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .week-head h3 { font-family: var(--font-display); font-size: 1.4rem; margin: 0 0 0.5rem; color: var(--accent-ink); }
+  .week-head .cando { color: var(--ink-2); font-size: 0.95rem; margin: 0; max-width: 60ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+  .chip { font-size: 0.76rem; border: 1px solid var(--rule); border-radius: 999px; padding: 0.2rem 0.65rem; color: var(--ink-2); background: var(--surface); }
+  .chip.accent { border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); color: var(--accent-ink); background: var(--accent-soft); }
+  a.chip { text-decoration: none; font-weight: 600; cursor: pointer; }
+  a.chip:hover { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+
+  .bloques { list-style: none; margin: 0; padding: 0.4rem 0.6rem; display: grid; gap: 0.3rem; }
+  .bloque { display: grid; grid-template-columns: 5rem 1fr; gap: 0.9rem; padding: 0.85rem 0.7rem; border-radius: 10px; }
+  .bloque + .bloque { border-top: 1px solid var(--rule-soft); }
+  .bloque .badge { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--accent); text-align: center; }
+  .bloque .badge small { display: block; color: var(--muted); font-weight: 400; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.15rem; }
+  .bloque h4 { margin: 0 0 0.2rem; font-size: 1rem; font-family: var(--font-sans); }
+  .bloque .obj { color: var(--ink-2); font-size: 0.9rem; margin: 0 0 0.5rem; font-style: italic; }
+  .arc { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.15rem; font-size: 0.82rem; }
+  .arc .slot { background: var(--surface-2); border: 1px solid var(--rule-soft); border-radius: 6px; padding: 0.12rem 0.45rem; color: var(--ink-2); }
+  .arc .sep { color: var(--accent); font-weight: 700; padding: 0 0.1rem; }
+  .arc .task { border-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); color: var(--accent-ink); background: var(--accent-soft); font-weight: 600; }
+
+  .whybar { padding: 0.9rem 1.3rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--ink-2); background: var(--surface-2); }
+  .whybar strong { color: var(--ink); }
+  details.key { border-top: 1px solid var(--rule); }
+  details.key summary {
+    cursor: pointer; padding: 0.8rem 1.3rem; font-family: var(--font-mono);
+    font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-ink); list-style: none;
+  }
+  details.key summary::-webkit-details-marker { display: none; }
+  details.key summary::before { content: "▸ "; color: var(--accent); }
+  details.key[open] summary::before { content: "▾ "; }
+  details.key .keybody { padding: 0 1.3rem 1.1rem; font-size: 0.86rem; color: var(--ink-2); display: grid; gap: 0.5rem; }
+  details.key .keybody .k { color: var(--accent-ink); font-weight: 600; }
+  details.key .keybody em { color: var(--ink); font-style: italic; }
+
+  footer { padding: var(--step) 0 calc(var(--step) * 1.4); }
+  footer .note { color: var(--muted); font-size: 0.9rem; max-width: 62ch; }
+  footer .sig { font-family: var(--font-display); font-size: 1.1rem; margin-top: 0.6rem; color: var(--accent-ink); }
+
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">Sr.&nbsp;Victor&nbsp;Azuaje <span class="tile">·</span> Español&nbsp;9-II</div>
+    <nav class="nav" aria-label="Sections">
+      <a href="#approach">Approach</a>
+      <a href="#year">Year plan</a>
+      <a href="#week1">Week 1</a>
+      <a href="#week2">Week 2</a>
+      <a href="#week3">Week 3</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Teaching Portfolio · Miramar High School · Broward County Public Schools</p>
+    <h1>Spanish, planned for how students actually remember.</h1>
+    <p class="role">Sr. Victor Azuaje — World Languages · Español 9-II</p>
+    <p class="thesis">A <strong>predictable block routine</strong> so novices feel safe to take risks, with <strong>content that rotates</strong> and <strong>spirals back</strong> so the language lasts past the test.</p>
+    <div class="facts">
+      <div class="fact"><span class="k">School</span><span class="v">Miramar HS · Broward</span></div>
+      <div class="fact"><span class="k">Course</span><span class="v">Español 9-II (novice)</span></div>
+      <div class="fact"><span class="k">Schedule</span><span class="v">A/B block · ~90 min</span></div>
+      <div class="fact"><span class="k">Standards</span><span class="v">ACTFL communication modes</span></div>
+      <div class="fact"><span class="k">This sample</span><span class="v">Full year + Weeks 1–3</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ══════════ APPROACH ══════════ -->
+  <section id="approach">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">01</span><div><h2>A typical bloque — and how a week builds</h2><p class="sec-sub">Same shape every block; new language every block. Ninety minutes is long enough to go deep — and long enough to lose a novice, so the arc is built to move.</p></div></div>
+
+      <ol class="rhythm">
+        <li><span class="n">1</span><span class="body"><strong>Do-Now — spiral warm-up</strong><span>Retrieval practice mixing the last bloque with material from weeks back. Spacing, not cramming, makes language last.</span></span><span class="t">~8 min</span></li>
+        <li><span class="n">2</span><span class="body"><strong>Input + checks for understanding</strong><span>Comprehensible presentation of the bloque's target (e.g. <em>ser</em> vs. <em>estar</em>), with frequent quick checks.</span></span><span class="t">~15 min</span></li>
+        <li><span class="n">3</span><span class="body"><strong>Guided practice, pass 1</strong><span>Scaffolded, controlled practice — word banks and sentence frames so every student can start.</span></span><span class="t">~15 min</span></li>
+        <li><span class="n">4</span><span class="body"><strong>Communicative core</strong><span>The heart of the bloque: students <em>talk</em>. Mingles, partner interviews, info-gaps — real meaning, not fill-in-the-blank.</span></span><span class="t">~18 min</span></li>
+        <li><span class="n">5</span><span class="body"><strong>Brain break</strong><span>A deliberate reset at the midpoint. On a 90-minute block this is not a luxury.</span></span><span class="t">~3 min</span></li>
+        <li><span class="n">6</span><span class="body"><strong>Guided practice, pass 2 — interleaved</strong><span>The same structure mixed with older material, so students must <em>choose</em> rather than repeat.</span></span><span class="t">~12 min</span></li>
+        <li><span class="n">7</span><span class="body"><strong>Extended output</strong><span>Students write or speak several sentences of their own — the payoff the block has been building toward.</span></span><span class="t">~12 min</span></li>
+        <li><span class="n">8</span><span class="body"><strong>Exit ticket</strong><span>A quick check so I know who has it and who needs reteaching next block.</span></span><span class="t">~5 min</span></li>
+        <li><span class="n">+</span><span class="body"><strong>Reto extra</strong><span>A self-directed challenge tied to the bloque's goal, ready for early finishers.</span></span><span class="t">any</span></li>
+      </ol>
+
+      <div class="cols">
+        <div class="panel">
+          <h3>How a week builds across three bloques</h3>
+          <ul class="weekflow">
+            <li><span class="d">Bloque 1</span><span>Meet a new structure on its own — <em>blocked</em> practice (e.g. <em>ser</em> + <em>tener</em>).</span></li>
+            <li><span class="d">Bloque 2</span><span>Meet the next structure, then <em>interleave</em> it with Bloque 1 so students must discriminate.</span></li>
+            <li><span class="d">Bloque 3</span><span>Task block: a real communicative task with an information gap the students have to close.</span></li>
+            <li><span class="d">Next week</span><span>The task's reflection opens the following week's Bloque 1 — spaced by days, not minutes.</span></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>What I believe about how students learn</h3>
+          <ul class="principles">
+            <li><strong>Predictable structure, rotating content.</strong> Routine lowers anxiety for novices; variety keeps them engaged.</li>
+            <li><strong>Teach for durable retention.</strong> Spacing, retrieval, and interleaving build language students <em>keep</em> — even when it makes today harder.</li>
+            <li><strong>Comprehensible input, then real communication.</strong> Understand messages, then use them for a purpose — organized around the ACTFL modes.</li>
+            <li><strong>Meet students where they are.</strong> Universal supports in every lesson; difficulty calibrated so challenge stays productive, never defeating.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ YEAR PLAN ══════════ -->
+  <section id="year">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">02</span><div><h2>The year at a glance</h2><p class="sec-sub">33 instructional weeks on a spiraling proficiency arc — identity → family → school → community → the wider world → a capstone — closing with themed review windows.</p></div></div>
+      <div class="tablewrap">
+        <table class="year">
+          <thead><tr><th>Wk</th><th>Dates</th><th>Unit / theme</th><th>Modes</th></tr></thead>
+          <tbody>
+            <tr class="term"><td colspan="4">Suggested Quarters 1–2 · 2026</td></tr>
+            <tr class="built"><td class="wk">1</td><td class="dt">Aug 10–14</td><td class="theme">Course launch &amp; proficiency routines</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
+            <tr class="built"><td class="wk">2</td><td class="dt">Aug 17–21</td><td class="theme">Spanish I bridge: personal information</td><td><span class="modes"><span class="mode">IP</span><span class="mode">W</span></span></td></tr>
+            <tr class="built"><td class="wk">3</td><td class="dt">Aug 24–28</td><td class="theme">Identity and self</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">4</td><td class="dt">Aug 31–Sep 4</td><td class="theme">Family and relationships</td><td><span class="modes"><span class="mode">PR</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">5</td><td class="dt">Sep 8–11</td><td class="theme">Identity, culture, and belonging</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">6</td><td class="dt">Sep 14–18</td><td class="theme">School life</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">7</td><td class="dt">Sep 22–25</td><td class="theme">School routines and obligations</td><td><span class="modes"><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">8</td><td class="dt">Sep 28–Oct 2</td><td class="theme">Clubs, activities, and invitations</td><td><span class="modes"><span class="mode">IP</span><span class="mode">W</span></span></td></tr>
+            <tr><td class="wk">9</td><td class="dt">Oct 5–9</td><td class="theme">Home</td><td><span class="modes"><span class="mode">PR</span><span class="mode">W</span></span></td></tr>
+            <tr><td class="wk">10</td><td class="dt">Oct 13–16</td><td class="theme">Chores and responsibilities</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">11</td><td class="dt">Oct 19–23</td><td class="theme">Community and places in town</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">12</td><td class="dt">Oct 26–30</td><td class="theme">Directions and community problem solving</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">13</td><td class="dt">Nov 2, 4–6</td><td class="theme">Food and meals</td><td><span class="modes"><span class="mode">IP</span><span class="mode">IN</span></span></td></tr>
+            <tr><td class="wk">14</td><td class="dt">Nov 9–10, 12–13</td><td class="theme">Restaurants and menus</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">15</td><td class="dt">Nov 16–20</td><td class="theme">Health and wellness</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">16</td><td class="dt">Nov 30–Dec 4</td><td class="theme">Healthy living &amp; cultural food practices</td><td><span class="modes"><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">17</td><td class="dt">Dec 7–11</td><td class="theme">Shopping and clothing</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">18</td><td class="dt">Dec 14–18</td><td class="theme">Money, prices, and product comparisons</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
+            <tr class="term"><td colspan="4">Suggested Quarters 3–4 · 2027</td></tr>
+            <tr><td class="wk">19</td><td class="dt">Jan 5–8</td><td class="theme">Gifts and consumer choices</td><td><span class="modes"><span class="mode">PR</span><span class="mode">W</span></span></td></tr>
+            <tr><td class="wk">20</td><td class="dt">Jan 11–15</td><td class="theme">Travel introduction and geography</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">21</td><td class="dt">Jan 19–22</td><td class="theme">Vacation activities and weather</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">22</td><td class="dt">Jan 25–29</td><td class="theme">Travel problems and recommendations</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">23</td><td class="dt">Feb 1–5</td><td class="theme">Leisure activities</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">24</td><td class="dt">Feb 8–12</td><td class="theme">Entertainment and events</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">25</td><td class="dt">Feb 16–19</td><td class="theme">Technology and media habits</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">26</td><td class="dt">Feb 22–26</td><td class="theme">Responsible communication online</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">27</td><td class="dt">Mar 1–5</td><td class="theme">Environment and global citizenship</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">28</td><td class="dt">Mar 8–9, 11–12</td><td class="theme">Careers and workplaces</td><td><span class="modes"><span class="mode">IP</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">29</td><td class="dt">Mar 15–18</td><td class="theme">Future plans and goals</td><td><span class="modes"><span class="mode">PR</span><span class="mode">W</span></span></td></tr>
+            <tr><td class="wk">30</td><td class="dt">Mar 29–Apr 2</td><td class="theme">Careers, culture, and pathways</td><td><span class="modes"><span class="mode">IN</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">31</td><td class="dt">Apr 5–9</td><td class="theme">Intercultural connections: products, practices, perspectives</td><td><span class="modes"><span class="mode">IN</span><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">32</td><td class="dt">Apr 12–16</td><td class="theme">Community action capstone</td><td><span class="modes"><span class="mode">PR</span><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">33</td><td class="dt">Apr 19–23</td><td class="theme">Capstone presentations and reflection</td><td><span class="modes"><span class="mode">PR</span><span class="mode">IP</span></span></td></tr>
+            <tr class="term"><td colspan="4">Review windows · organized by communication mode</td></tr>
+            <tr><td class="wk">R1</td><td class="dt">Apr 26–30</td><td class="theme">Interpretive reading/listening by theme; targeted reteaching from capstone evidence</td><td><span class="modes"><span class="mode">IN</span></span></td></tr>
+            <tr><td class="wk">R2</td><td class="dt">May 3–7</td><td class="theme">Interpersonal speaking &amp; role-play rotations</td><td><span class="modes"><span class="mode">IP</span></span></td></tr>
+            <tr><td class="wk">R3</td><td class="dt">May 10–14</td><td class="theme">Presentational writing &amp; individual skill conferences</td><td><span class="modes"><span class="mode">PR</span></span></td></tr>
+            <tr><td class="wk">R4</td><td class="dt">May 17–Jun 10</td><td class="theme">Make-ups, speaking checks, confidence-building review</td><td><span class="modes"><span class="mode">—</span></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="legend">
+        <span><span class="dot">●</span> = fully built below (Weeks 1–3)</span>
+        <span><strong>IP</strong> Interpersonal · <strong>IN</strong> Interpretive · <strong>PR</strong> Presentational · <strong>W</strong> Writing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WEEK 1 ══════════ -->
+  <section id="week1">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">03</span><div><h2>The first three weeks, bloque by bloque</h2><p class="sec-sub">Each week is one arc across three blocks: introduce → interleave → task. Every bloque below is a real, print-ready student handout with a matching teacher guide.</p></div></div>
+
+      <article class="week">
+        <div class="week-head">
+          <div class="kicker"><span>Week 1</span><span>Aug 10–14 · 3 bloques</span></div>
+          <h3>Course launch &amp; proficiency routines</h3>
+          <p class="cando"><strong>Can-do:</strong> Use classroom Spanish, ask for help, and complete a baseline speaking &amp; writing sample.</p>
+          <div class="chips"><span class="chip accent">Task: class survey → class profile (3-part TBLT)</span><span class="chip">Product: diagnostic writing</span><span class="chip">Interpersonal + Presentational</span><a class="chip" href="week-01.html" target="_blank" rel="noopener">View full lesson →</a></div>
+        </div>
+        <ul class="bloques">
+          <li class="bloque"><div class="badge">Bloque 1</div><div><h4>Saludos y frases de supervivencia</h4><p class="obj">Puedo saludar, presentarme y pedir ayuda en español.</p><div class="arc"><span class="slot">Do-Now: activación (4)</span><span class="sep">→</span><span class="slot">Input: 8-phrase survival bank + CFU</span><span class="sep">→</span><span class="slot">Guided 1: situación→frase (6)</span><span class="sep">→</span><span class="slot task">Mingle (≥6 exchanges)</span><span class="sep">→</span><span class="slot">Guided 2: clasifica (8)</span><span class="sep">→</span><span class="slot">Output: auto-presentación (4–5 sent.)</span><span class="sep">→</span><span class="slot">Exit (3)</span></div></div></li>
+          <li class="bloque"><div class="badge">Bloque 2</div><div><h4>Palabras interrogativas e información personal</h4><p class="obj">Puedo hacer y contestar preguntas básicas sobre mí.</p><div class="arc"><span class="slot">Do-Now: spiral B1 (4)</span><span class="sep">→</span><span class="slot">Input: 6 question words + CFU</span><span class="sep">→</span><span class="slot">Guided 1: completa la pregunta (6)</span><span class="sep">→</span><span class="slot task">Entrevista (≥6 exchanges)</span><span class="sep">→</span><span class="slot">Guided 2: empareja · <em>interleave</em> B1+B2 (7)</span><span class="sep">→</span><span class="slot">Output: <em>Todo sobre mí</em> (5 sent.)</span><span class="sep">→</span><span class="slot">Exit (3)</span></div></div></li>
+          <li class="bloque"><div class="badge">Bloque 3<small>task</small></div><div><h4>Tarea: encuesta de clase → perfil de la clase</h4><p class="obj">Puedo compartir información sobre mí y contribuir al perfil de la clase.</p><div class="arc"><span class="slot">Do-Now: spiral B2</span><span class="sep">→</span><span class="slot">Pre-tarea (~17 min): recall · odd-one-out · build the question</span><span class="sep">→</span><span class="slot task">Tarea principal (~63 min): info-gap class survey → class profile</span></div></div></li>
+        </ul>
+        <div class="whybar"><strong>Why:</strong> Survival language is the highest-leverage content of the year — it keeps the room in Spanish from day one, and the week collects a baseline writing sample that sets the first difficulty ceiling. <strong>The full three-part task:</strong> a pre-task primes the three survey questions, then in the main task each classmate may give you <em>only one answer</em> — so students must keep circulating, and nobody can finish the class profile alone. The reflection opens Week 2 · Bloque 1 as a formal-email writing task, shifting the survey's casual spoken questions into a formal written register.</div>
+        <details class="key"><summary>Teacher notes &amp; answer key</summary><div class="keybody">
+          <div><span class="k">Bloque 1 — Guided 1 (situación → frase):</span> <em>No entiendo · ¿Cómo se dice ___? · Repite, por favor · Necesito ayuda · ¿Puedo ir al baño? · Buenos días.</em> Sort (8): saludos/despedidas · pedir ayuda · frases de clase.</div>
+          <div><span class="k">Bloque 2 — Completa la pregunta:</span> ¿<em>Cómo</em> te llamas? · ¿<em>De dónde</em> eres? · ¿<em>Dónde</em> vives? · ¿<em>Qué</em> te gusta? · ¿<em>Cuántos</em> años tienes? · ¿<em>Cómo</em> estás?</div>
+          <div><span class="k">Bloque 2 — Output (sample):</span> <em>Me llamo Ana. Soy de Miami. Tengo catorce años. Me gusta la música. Me gustan los deportes.</em> (diagnostic — score for evidence, not accuracy).</div>
+          <div><span class="k">Bloque 3 — Task design:</span> gap type <em>oral</em>; structure <em>sort → self-ID frames → partner interview → class circulation → synthesis</em>; complication <em>resource scarcity</em> (one answer per classmate). Target grammar: interrogative word order + <em>llamarse / ser / tener</em>.</div>
+          <div><span class="k">Bloque 3 — Criteria:</span> asks for help / uses survival Spanish · answers personal questions · contributes to the class profile. Baseline — record it in a Class-Progress Record before building Week 2.</div>
+          <div><span class="k">TBLT pipeline:</span> generated through a four-gate teacher-supervised pipeline (design brief → main task → pre-task → reflection), with an independent pedagogical-quality check (Lee-Schell rubric) between generation and teacher review. This task converged at 20/24 with zero revision rounds.</div>
+        </div></details>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════ WEEK 2 ══════════ -->
+  <section id="week2">
+    <div class="wrap">
+      <article class="week">
+        <div class="week-head">
+          <div class="kicker"><span>Week 2</span><span>Aug 17–21 · 3 bloques</span></div>
+          <h3>Spanish I bridge: personal information</h3>
+          <p class="cando"><strong>Can-do:</strong> Exchange personal details, likes, interests, and basic descriptions. <strong>New structures:</strong> <em>ser</em> + <em>tener</em>, then <em>gustar</em> + <em>estar</em>.</p>
+          <div class="chips"><span class="chip accent">Task: mingle de intereses → class pattern</span><span class="chip">Product: <em>Todo sobre mí</em> profile</span><span class="chip">Interpersonal + Writing</span><a class="chip" href="week-02.html" target="_blank" rel="noopener">View full lesson →</a></div>
+        </div>
+        <ul class="bloques">
+          <li class="bloque"><div class="badge">Bloque 1</div><div><h4><em>Soy</em> y <em>tengo</em></h4><p class="obj">Puedo decir quién soy y qué tengo.</p><div class="arc"><span class="slot">Do-Now: spiral Wk1 (4)</span><span class="sep">→</span><span class="slot">Input: <em>ser</em> + <em>tener</em> + CFU</span><span class="sep">→</span><span class="slot">Guided 1: conjuga (6) · <em>blocked</em></span><span class="sep">→</span><span class="slot task">Encuentra a alguien que… (≥6)</span><span class="sep">→</span><span class="slot">Guided 2: <em>interleave</em> (6)</span><span class="sep">→</span><span class="slot">Output: ¿Quién soy? (4–5 sent.)</span><span class="sep">→</span><span class="slot task">Reflexión: Wk1 task → correo formal</span></div></div></li>
+          <li class="bloque"><div class="badge">Bloque 2</div><div><h4><em>Me gusta</em> y <em>estoy</em></h4><p class="obj">Puedo decir qué me gusta y cómo estoy.</p><div class="arc"><span class="slot">Do-Now: spiral B1 (4)</span><span class="sep">→</span><span class="slot">Input: <em>gustar</em> + <em>estar</em> + CFU</span><span class="sep">→</span><span class="slot">Guided 1: escoge (6) · <em>blocked</em></span><span class="sep">→</span><span class="slot task">Entrevista: gustos + sentimientos (≥6)</span><span class="sep">→</span><span class="slot">Guided 2: <em>interleave</em> gustar/estar/tener (6)</span><span class="sep">→</span><span class="slot">Output (4–5 sent.)</span><span class="sep">→</span><span class="slot">Exit (3)</span></div></div></li>
+          <li class="bloque"><div class="badge">Bloque 3<small>task</small></div><div><h4>Tarea: mingle de intereses → un patrón de la clase</h4><p class="obj">Puedo escribir un perfil corto y encontrar compañeros con un interés en común.</p><div class="arc"><span class="slot">Do-Now: spiral</span><span class="sep">→</span><span class="slot task">Mingle info-gap → report one class pattern</span></div></div></li>
+        </ul>
+        <div class="whybar"><strong>Why:</strong> Bloque 1 encodes <em>ser</em>/<em>tener</em> <em>blocked</em>; Bloque 2 adds <em>gustar</em>/<em>estar</em> and then <em>interleaves</em> all four, so students must choose rather than repeat. The <em>ser</em>/<em>estar</em> contrast is deliberately <strong>held back to Week 3</strong> — introducing a confusable pair before its first member is stable is how <em>ser</em>/<em>estar</em> goes wrong. Bloque 1 also opens with Week 1's reflection instead of its usual exit ticket: spaced across days, students write a formal email reporting the survey results, deliberately shifting register from the spoken task.</div>
+        <details class="key"><summary>Teacher notes &amp; answer key</summary><div class="keybody">
+          <div><span class="k">Bloque 1 — Conjuga:</span> Yo <em>soy</em> estudiante · Yo <em>tengo</em> catorce años · ¿Tú <em>eres</em> de Florida? · Mi amiga <em>tiene</em> el pelo largo · Él <em>es</em> simpático · Yo <em>tengo</em> una hermana.</div>
+          <div><span class="k">Bloque 1 — Interleave:</span> ¿<em>Cuántos</em> años tienes? · Yo <em>soy</em> de Miami y <em>tengo</em> dos hermanos · ¿De dónde <em>eres</em> tú? · Mi profesor <em>es</em> paciente · Ella <em>tiene</em> el pelo corto y <em>es</em> simpática · ¿<em>Cómo</em> te llamas?</div>
+          <div><span class="k">Bloque 2 — Escoge:</span> Me <em>gusta</em> el fútbol · Me <em>gustan</em> las clases de arte · Me <em>gusta</em> la música · Me <em>gustan</em> los deportes · Yo <em>estoy</em> contento/a hoy · ¿Cómo <em>estás</em> tú?</div>
+          <div><span class="k">Bloque 2 — Output (sample):</span> <em>Me gusta la música. Me gustan los deportes. No me gusta la tarea. Estoy contento/a en la clase de arte. Estoy cansado/a en la clase de matemáticas.</em></div>
+          <div><span class="k">Criteria:</span> gives details (name, age, origin, ≥2 likes) · asks a follow-up during the mingle · reports one class pattern. Update the Class-Progress Record — note <em>ser</em>/<em>estar</em> readiness before the Week 3 contrast beat.</div>
+        </div></details>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════ WEEK 3 ══════════ -->
+  <section id="week3">
+    <div class="wrap">
+      <article class="week">
+        <div class="week-head">
+          <div class="kicker"><span>Week 3</span><span>Aug 24–28 · 3 bloques</span></div>
+          <h3>Identity and self — <em>ser</em> / <em>estar</em></h3>
+          <p class="cando"><strong>Can-do:</strong> Describe personality, appearance, emotions, identity, and interests. <strong>The year's first confusable pair:</strong> <em>ser</em> (traits) vs. <em>estar</em> (feelings).</p>
+          <div class="chips"><span class="chip accent">Task: entrevista + resumen oral</span><span class="chip">Product: interview notes + spoken summary</span><span class="chip">Interpersonal + Presentational</span><a class="chip" href="week-03.html" target="_blank" rel="noopener">View full lesson →</a></div>
+        </div>
+        <ul class="bloques">
+          <li class="bloque"><div class="badge">Bloque 1</div><div><h4><em>Ser</em> (rasgos) y <em>estar</em> (sentimientos)</h4><p class="obj">Puedo escoger <em>ser</em> para quién soy y <em>estar</em> para cómo estoy.</p><div class="arc"><span class="slot">Do-Now: spiral Wk2 (4)</span><span class="sep">→</span><span class="slot">Input: side-by-side contrast + CFU</span><span class="sep">→</span><span class="slot">Guided 1: escoge ser/estar (6)</span><span class="sep">→</span><span class="slot task">Entrevista (≥6 exchanges)</span><span class="sep">→</span><span class="slot">Guided 2: clasifica rasgo/sentimiento (8) · confusables adjacent</span><span class="sep">→</span><span class="slot">Output: auto-descripción (5 sent.)</span><span class="sep">→</span><span class="slot">Exit (3)</span></div></div></li>
+          <li class="bloque"><div class="badge">Bloque 2</div><div><h4>Apariencia y personalidad</h4><p class="obj">Puedo describir cómo es alguien con la concordancia correcta.</p><div class="arc"><span class="slot">Do-Now: spiral B1 (4)</span><span class="sep">→</span><span class="slot">Input: adjetivos + concordancia + CFU</span><span class="sep">→</span><span class="slot">Guided 1: concordancia (6)</span><span class="sep">→</span><span class="slot task">Describe y adivina · info-gap (≥6)</span><span class="sep">→</span><span class="slot">Guided 2: <em>interleave</em> ser/estar/gustar (6)</span><span class="sep">→</span><span class="slot">Output: presentación <em>oral</em> (≥4 sent.)</span><span class="sep">→</span><span class="slot">Exit (3)</span></div></div></li>
+          <li class="bloque"><div class="badge">Bloque 3<small>task</small></div><div><h4>Tarea: entrevista con seguimiento + resumen oral</h4><p class="obj">Puedo entrevistar a un/a compañero/a con preguntas de seguimiento y resumirlo/a en voz alta.</p><div class="arc"><span class="slot">Do-Now: spiral</span><span class="sep">→</span><span class="slot task">Entrevista con preguntas de seguimiento → resumen oral</span></div></div></li>
+        </ul>
+        <div class="whybar"><strong>Why:</strong> <em>ser</em>/<em>estar</em> is the anchor confusable of the year, so it follows the rule exactly: introduce the new member <em>blocked</em> in Week 2 → teach the contrast as its own beat here → <em>interleave</em> with a sorting task that puts the confusables side by side. Bloque 2's output rotates to <strong>speaking</strong> — Weeks 1–2 were all written — to rehearse the oral summary the Bloque 3 task ends on.</div>
+        <details class="key"><summary>Teacher notes &amp; answer key</summary><div class="keybody">
+          <div><span class="k">Bloque 1 — Escoge ser/estar:</span> Yo <em>soy</em> creativo/a (rasgo) · Ella <em>está</em> nerviosa hoy (sentimiento) · Yo <em>soy</em> de Florida (origen) · Tú <em>estás</em> cansado/a · Mi amigo <em>es</em> simpático · Yo <em>estoy</em> contento/a hoy.</div>
+          <div><span class="k">Bloque 1 — Clasifica (8):</span> <em>Rasgo (ser):</em> alto · de Miami · trabajador · simpático. <em>Sentimiento (estar):</em> cansado · nervioso · contento · aburrido.</div>
+          <div><span class="k">Bloque 2 — Concordancia:</span> María es <em>alta</em> · Los chicos son <em>trabajadores</em> · Ana tiene el pelo <em>largo</em> · Mis amigas son <em>graciosas</em> · Carlos es <em>bajo</em> · Ella es <em>inteligente</em> (sin cambio).</div>
+          <div><span class="k">Bloque 2 — Output (spoken, sample):</span> <em>Mi hermano es alto y moreno. Tiene el pelo corto. Es muy gracioso y trabajador. Hoy está contento porque le gusta el fútbol.</em> Score the spoken turn, ≥4 sentences.</div>
+          <div><span class="k">Criteria:</span> asks 3 questions · answers with details (<em>ser</em> traits, <em>estar</em> feelings, likes) · summarizes the partner aloud. Then ask the diagnostic question: is <em>ser</em>/<em>estar</em> holding under interview load, or does it need to spiral into Week 4?</div>
+        </div></details>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="note">These three weeks are drawn from a full-year Español 9-II plan built on the Broward scope-and-sequence and Miramar High School's A/B block schedule. Every bloque exists as a print-ready student handout and a matching teacher guide with answer keys, timing, and pacing notes.</p>
+      <p class="sig">Sr. Victor Azuaje · Español 9-II · Miramar High School · Broward County Public Schools</p>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>
