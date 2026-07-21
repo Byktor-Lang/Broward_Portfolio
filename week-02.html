@@ -5,30 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Semana 2 — Todo sobre mí — Español II</title>
   <style>
-/* ============================================================================
-   print.css — shared print stylesheet for Teacher Guides + Lessons
-   ----------------------------------------------------------------------------
-   Derived from the TBLT template design system (sources/9_1..9_3) so Practice
-   Engine output and imported TBLT worksheets read as one visual language
-   (ADR 0010 — design borrowed, no runtime coupling).
 
-   GUIDELINES ENCODED HERE (do not weaken):
-   - Paper: A4 portrait, 2cm margins. (To switch to US Letter, edit the @page rule
-     below — size: letter — reversing ADR 0001.)
-   - No tinted fills: sections are demarcated by borders + font weight only.
-   - Monochrome: #111 text, grays for secondary text and borders. No accent color.
-   - orphans:3 / widows:3 — no stranded lines across page breaks.
-   - break-inside: avoid on every container; break-after: avoid on headers.
-   - Font sizes in pt; write-in heights in cm. Never rem/px for print.
-   Default font is sans (Variant B). For the serif "academic" look, set
-   --font-family to the Times stack.
-   ========================================================================== */
 
 :root {
-  --page-width: 21cm;              /* on-screen page width (A4=21cm, Letter=21.6cm) */
-  --page-margin: 2cm;              /* on-screen page margin (body padding). Print margin is the literal in @page below — Firefox ignores var() there. */
+  --page-width: 21cm;              
+  --page-margin: 2cm;              
   --font-family: 'Helvetica', 'Arial', sans-serif;
-  /* serif alt: 'Times New Roman', Times, serif; */
+  
   --fs-base: 11pt;
   --fs-h1: 16pt;
   --fs-h2: 13pt;
@@ -43,15 +26,12 @@
   --write: #888;
 }
 
-/* Literal values, NOT the :root vars above: Firefox does not resolve var()
-   inside @page, so a variable here drops the margin and content runs to the
-   paper edge. Keep in sync with --page-margin. To reverse ADR 0001: size letter. */
+
 @page { size: A4 portrait; margin: 2cm; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Screen: render a centered "page" so left/right margins are visible in the
-   browser too (@page margins apply to print only). Print resets this below. */
+
 html { background: #e9e9e9; }
 
 body {
@@ -69,14 +49,14 @@ body {
   box-shadow: 0 0 0.2cm rgba(0, 0, 0, 0.25);
 }
 
-/* ── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
+
 h1 { font-size: var(--fs-h1); font-weight: bold; }
 h2 { font-size: var(--fs-h2); font-weight: bold; }
 h3 { font-size: var(--fs-h3); font-weight: bold; }
 p, li, td, th { font-size: var(--fs-base); }
 small { font-size: var(--fs-small); color: var(--ink-3); }
 
-/* ── DOCUMENT HEADER (week / block) ─────────────────────────────────────── */
+
 .activity-header { border-bottom: 2pt solid var(--ink); padding-bottom: 0.4cm; margin-bottom: 0.6cm; }
 .activity-header h1 { margin-bottom: 0.15cm; }
 .meta-row { display: flex; gap: 1.5cm; font-size: var(--fs-small); color: var(--ink-2); margin-top: 0.2cm; }
@@ -87,11 +67,8 @@ small { font-size: var(--fs-small); color: var(--ink-3); }
 .student-info-field label { font-size: var(--fs-small); display: block; margin-bottom: 0.1cm; }
 .student-info-field .write-line { border-bottom: 1pt solid var(--ink-3); height: 0.7cm; display: block; }
 
-/* ── BLOCK + ARC-SLOT CONTAINERS (Practice Engine) ──────────────────────── */
-/* A block may flow across pages (only its START is forced to a new page, in the
-   @media print rule below). Do NOT keep the whole block on one page — that fights
-   long deep-arc blocks. Internal slots (.step-container) stay intact; widows/
-   orphans are governed on body. */
+
+
 .block { margin-bottom: 1cm; }
 .block-header {
   color: var(--ink);
@@ -104,7 +81,7 @@ small { font-size: var(--fs-small); color: var(--ink-3); }
 }
 .objective { font-weight: bold; margin-bottom: 0.4cm; }
 
-/* arc slot = one step of Do-Now → input → practice → output → exit ticket */
+
 .step-container { margin-bottom: 0.9cm; break-inside: avoid; page-break-inside: avoid; }
 .step-header {
   color: var(--ink);
@@ -120,17 +97,17 @@ small { font-size: var(--fs-small); color: var(--ink-3); }
   margin-bottom: 0.35cm; break-after: avoid; page-break-after: avoid;
 }
 
-/* ── WRITE-IN ELEMENTS ──────────────────────────────────────────────────── */
+
 .write-line { border-bottom: 1pt solid var(--write); height: 0.75cm; display: block; width: 100%; margin-bottom: 0.4cm; }
 .write-box { border: 1pt solid var(--write); min-height: 2cm; width: 100%; margin-bottom: 0.5cm; display: block; }
 
-/* ── WORD BANK ──────────────────────────────────────────────────────────── */
+
 .word-bank { border: 1pt solid var(--rule); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
 .word-bank-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); margin-bottom: 0.15cm; }
 .word-bank-items { display: flex; flex-wrap: wrap; gap: 0.2cm 0.6cm; font-size: var(--fs-base); }
 .word-bank-items span { white-space: nowrap; }
 
-/* ── TABLES ─────────────────────────────────────────────────────────────── */
+
 table { width: 100%; border-collapse: collapse; font-size: var(--fs-base); break-inside: avoid; page-break-inside: avoid; }
 thead { display: table-header-group; }
 th { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; text-align: center; font-weight: bold; font-size: 10.5pt; }
@@ -138,22 +115,22 @@ td { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; vertical-align: top; 
 .check-cell { width: 1.8cm; text-align: center; }
 .num-cell { width: 0.7cm; text-align: center; color: var(--ink-3); }
 
-/* ── TWO-COLUMN LAYOUTS (match, sort) ───────────────────────────────────── */
+
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
 .col-box { border: 1pt solid var(--rule); padding: 0.3cm; break-inside: avoid; page-break-inside: avoid; }
 .col-header { font-weight: bold; font-size: 10.5pt; text-align: center; border-bottom: 1pt solid var(--rule); padding: 0.1cm 0.2cm; margin-bottom: 0.2cm; break-after: avoid; page-break-after: avoid; }
 
-/* ── LIST ITEMS (numbered/lettered exercises) ───────────────────────────── */
+
 .list-item { display: flex; align-items: flex-start; gap: 0.3cm; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
 .list-item .num { min-width: 0.6cm; font-weight: bold; color: var(--ink-3); padding-top: 0.02cm; }
 .list-item .content { flex: 1; }
 
-/* ── SENTENCE FRAMES ────────────────────────────────────────────────────── */
+
 .frame-section { margin-bottom: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
 .frame-model { border-left: 3pt solid var(--ink-3); padding: 0.2cm 0.4cm; font-style: italic; font-size: 10.5pt; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
 .frame-model-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; color: #666; display: block; margin-bottom: 0.05cm; font-style: normal; }
 
-/* ── RATING SCALE (self-assessment / exit ticket, from TBLT activity) ────── */
+
 .rating-scale { margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
 .scale-title { font-weight: bold; font-size: 10.5pt; margin-bottom: 0.1cm; }
 .scale-labels { display: flex; justify-content: space-between; font-size: var(--fs-small); color: var(--ink-3); }
@@ -161,70 +138,61 @@ td { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; vertical-align: top; 
 .scale-item { display: inline-flex; align-items: center; gap: 0.1cm; }
 .scale-radio { width: 0.4cm; height: 0.4cm; border: 1pt solid var(--write); border-radius: 50%; display: inline-block; }
 
-/* ── PRACTICE-ENGINE CALLOUTS ───────────────────────────────────────────── */
-/* Extension ("Reto extra") — bordered box, no fill */
+
+
 .extension { border: 1pt solid var(--rule); border-left: 3pt solid var(--ink); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
 .extension-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); margin-bottom: 0.1cm; }
-/* Primary source per week — QR/link line */
+
 .primary-source { font-size: var(--fs-small); color: var(--ink-2); border: 1pt dashed var(--rule); padding: 0.2cm 0.35cm; margin-bottom: 0.4cm; }
-/* Family take-home + "ask your teacher" (Lesson only) */
+
 .take-home { font-size: var(--fs-small); color: var(--ink-2); margin-top: 0.3cm; }
 .ask-teacher { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); margin-top: 0.3cm; }
 
-/* ── TBLT IMPORTED-TASK COMPONENTS (reskinned from tblt-imports output) ──── */
-/* Generic bordered callout — survival-phrase reminders, time/negotiation
-   prompts, bridge notes. Same monochrome-box language as .extension/.word-bank. */
+
+
 .callout { border: 1pt solid var(--ink-2); padding: 0.25cm 0.4cm; margin-bottom: 0.4cm; break-inside: avoid; page-break-inside: avoid; }
 .callout-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-2); margin-bottom: 0.15cm; }
-/* Example/model row inside an imported table (interview grid, sort grid) */
+
 .example-row td { font-style: italic; color: var(--ink-3); }
-/* Self-correction checklist (Post-Task) — distinct from .list-item (num+content) */
+
 .checklist-item { display: flex; align-items: flex-start; gap: 0.3cm; margin-bottom: 0.35cm; break-inside: avoid; page-break-inside: avoid; }
 .checklist-box { width: 0.35cm; height: 0.35cm; border: 1pt solid var(--ink-2); flex-shrink: 0; margin-top: 0.05cm; }
 
-/* ── TBLT EMBED (imported task nested into the task block, ADR 0011) ─────── */
-/* Heavier border signals an external artifact reskinned into the shared system.
-   The Practice Engine marks this slot; it never generates the task inside. */
+
+
 .tblt-embed { border: 1.5pt solid var(--ink); padding: 0.3cm 0.4cm; margin-bottom: 0.5cm; break-inside: avoid; page-break-inside: avoid; }
 .tblt-embed-label { font-size: var(--fs-small); font-weight: bold; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); border-bottom: 1pt solid var(--rule); padding-bottom: 0.1cm; margin-bottom: 0.25cm; }
 .tblt-part { margin: 0.2cm 0; }
 .tblt-part-label { font-weight: bold; }
 .tblt-placeholder { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); }
 
-/* ── FOOTER ─────────────────────────────────────────────────────────────── */
+
 .activity-footer { margin-top: 1cm; border-top: 1pt solid var(--rule-soft); padding-top: 0.3cm; font-size: var(--fs-small); color: var(--ink-mute); text-align: center; break-inside: avoid; page-break-inside: avoid; }
 
-/* ── TEACHER GUIDE ELEMENTS (Guide file only — never in the Lesson) ──────── */
-/* ADR 0009: the Guide is a SEPARATE FILE, not a teacher-page appended to the
-   student file. These classes style the Guide; the Lesson never includes them. */
+
+
 .teacher-section { margin-bottom: 0.8rem; break-inside: avoid; page-break-inside: avoid; }
 .teacher-section-title { font-size: 11pt; font-weight: bold; border-bottom: 1pt solid var(--rule); padding-bottom: 0.2rem; margin-bottom: 0.3rem; }
 .teacher-note { font-size: var(--fs-small); line-height: 1.6; }
 .teacher-answer-key { font-size: var(--fs-small); line-height: 1.7; }
 .teacher-answer-key .ak-paso { font-weight: bold; margin-top: 0.4rem; }
-/* "hard on purpose" note (ADR 0012) — Guide only */
+
 .hard-note { font-size: var(--fs-small); font-style: italic; color: var(--ink-3); border-left: 2pt solid var(--ink-3); padding-left: 0.3cm; margin: 0.2cm 0; }
 .why-note { font-size: var(--fs-small); color: var(--ink-2); }
 .timing { font-size: var(--fs-small); color: var(--ink-3); font-weight: normal; }
 
 @media print {
   html { background: #fff; }
-  /* @page owns the print margins — clear the on-screen page simulation. */
+  
   body { width: auto; max-width: none; margin: 0; padding: 0; box-shadow: none; background: #fff; }
 
-  /* Each block starts on a fresh page so the teacher never cuts one block off
-     another at the copier. The FIRST block stays with the week header — it
-     directly follows .activity-header (Guide) or .student-info (Lesson), so
-     those two adjacencies opt back out of the page break. */
+  
   .block { break-before: page; page-break-before: always; }
   .activity-header + .block,
   .student-info + .block { break-before: auto; page-break-before: auto; }
 }
 
-/* Screen-only: mirror the print pagination during an HTML review, since the
-   @media print page breaks above are invisible on screen. A divider marks where
-   each block will begin a new printed page; the first block (right after the
-   week header) shows none. Never rendered in print. */
+
 @media screen {
   .block::before {
     content: "▲ nueva página / new page ▲";
@@ -321,8 +289,8 @@ td { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; vertical-align: top; 
       <span class="write-box"></span>
     </div>
 
-    <!-- Post-task reflection imported from the Semana 1 TBLT (ADR 0011): replaces this
-         block's exit ticket. Reskinned, content unaltered (ADR 0010). -->
+    <!-- Post-task reflection imported from the Semana 1 TBLT: replaces this
+         block's exit ticket. Reskinned, content unaltered. -->
     <div class="step-container">
       <div class="step-header">Reflexión — Post-tarea: un correo formal (Semana 1)</div>
       <div class="callout">
@@ -454,7 +422,7 @@ td { border: 1pt solid var(--rule); padding: 0.15cm 0.3cm; vertical-align: top; 
       <span class="write-line"></span><span class="write-line"></span>
     </div>
 
-    <!-- TBLT EMBED — imported task nests here (ADR 0011): pre-task follows the Do-Now,
+    <!-- TBLT EMBED — imported task nests here: pre-task follows the Do-Now,
          main-task is the block's core, reflection opens Semana 3 · Bloque 1. -->
     <div class="tblt-embed">
       <div class="tblt-embed-label">Actividad comunicativa — Mingle de intereses</div>
